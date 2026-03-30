@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>王培吉 · Peiji (Jasper) Wang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Jost:wght@300;400;500&family=Noto+Serif+SC:wght@300;400&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #1a1a18;
+      --muted: #6b6b66;
+      --faint: #9e9e99;
+      --line: #e2e2dc;
+      --bg: #faf9f7;
+      --accent: #2c4a7c;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Jost', 'Noto Sans SC', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.75;
+    }
+    body.zh { font-family: 'Noto Sans SC', 'Jost', sans-serif; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 3rem;
+      background: rgba(250,249,247,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 0.5px solid var(--line);
+      gap: 1rem;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
+      font-size: 18px; font-weight: 400; letter-spacing: 0.05em;
+      color: var(--ink); white-space: nowrap;
+    }
+    .nav-right { display: flex; align-items: center; gap: 2rem; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+
+    /* LANG TOGGLE */
+    .lang-toggle {
+      display: flex; align-items: center;
+      background: white; border: 0.5px solid var(--line); border-radius: 3px;
+      overflow: hidden; font-size: 11px; cursor: pointer; flex-shrink: 0;
+    }
+    .lang-toggle span {
+      padding: 5px 11px; letter-spacing: 0.08em;
+      color: var(--faint); transition: all 0.2s; user-select: none;
+    }
+    .lang-toggle span.active { background: var(--ink); color: var(--bg); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh; display: flex; flex-direction: column;
+      justify-content: flex-end; padding: 0 3rem 5rem;
+      border-bottom: 0.5px solid var(--line);
+    }
+    .hero-eyebrow {
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--faint); margin-bottom: 1.2rem;
+    }
+    .hero-name {
+      font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
+      font-size: clamp(52px, 9vw, 96px); font-weight: 300;
+      line-height: 1.0; letter-spacing: -0.02em;
+      color: var(--ink); margin-bottom: 1.5rem;
+    }
+    body.zh .hero-name {
+      font-family: 'Noto Serif SC', serif;
+      font-size: clamp(48px, 8vw, 88px); letter-spacing: 0.04em;
+    }
+    .hero-name em { font-style: italic; color: var(--accent); }
+    .hero-sub {
+      font-size: 16px; color: var(--muted); max-width: 520px;
+      margin-bottom: 2.5rem; line-height: 1.7;
+    }
+    .hero-contacts { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .hero-contacts a {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; letter-spacing: 0.08em; color: var(--muted);
+      text-decoration: none; border: 0.5px solid var(--line);
+      padding: 7px 16px; border-radius: 2px; transition: all 0.2s;
+    }
+    .hero-contacts a:hover { color: var(--ink); border-color: var(--ink); }
+
+    /* MAIN */
+    main { max-width: 1100px; margin: 0 auto; padding: 0 3rem; }
+    section {
+      display: grid; grid-template-columns: 200px 1fr;
+      gap: 0 4rem; padding: 5rem 0; border-bottom: 0.5px solid var(--line);
+    }
+    .section-label {
+      font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--faint); padding-top: 4px; position: sticky;
+      top: 80px; align-self: start;
+    }
+
+    /* ABOUT */
+    .about-text { font-size: 17px; line-height: 1.85; color: var(--muted); max-width: 620px; }
+    .about-text strong { color: var(--ink); font-weight: 500; }
+
+    /* EDUCATION */
+    .edu-item { margin-bottom: 2.5rem; }
+    .edu-item:last-child { margin-bottom: 0; }
+    .edu-school {
+      font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
+      font-size: 22px; font-weight: 400; color: var(--ink); margin-bottom: 2px;
+    }
+    body.zh .edu-school { font-family: 'Noto Serif SC', serif; font-size: 19px; }
+    .edu-degree { font-size: 13px; color: var(--accent); font-weight: 500; margin-bottom: 3px; }
+    .edu-date { font-size: 12px; color: var(--faint); margin-bottom: 8px; }
+    .edu-courses { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+    /* EXPERIENCE */
+    .exp-item {
+      display: grid; grid-template-columns: 140px 1fr; gap: 0 2rem;
+      margin-bottom: 2.5rem; padding-bottom: 2.5rem; border-bottom: 0.5px solid var(--line);
+    }
+    .exp-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .exp-date { font-size: 12px; color: var(--faint); padding-top: 3px; line-height: 1.5; }
+    .exp-company { font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 2px; }
+    .exp-role {
+      font-size: 12px; letter-spacing: 0.06em; color: var(--accent);
+      margin-bottom: 10px; text-transform: uppercase;
+    }
+    body.zh .exp-role { text-transform: none; letter-spacing: 0.03em; }
+    .exp-bullets { list-style: none; padding: 0; }
+    .exp-bullets li {
+      font-size: 13.5px; color: var(--muted); padding-left: 14px;
+      position: relative; margin-bottom: 5px; line-height: 1.65;
+    }
+    .exp-bullets li::before {
+      content: '—'; position: absolute; left: 0;
+      color: var(--line); font-size: 11px; top: 3px;
+    }
+
+    /* RESEARCH */
+    .research-item { margin-bottom: 2.2rem; padding-bottom: 2.2rem; border-bottom: 0.5px solid var(--line); }
+    .research-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .research-title { font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 2px; }
+    .research-date { font-size: 12px; color: var(--faint); margin-bottom: 8px; }
+    .research-desc { font-size: 13.5px; color: var(--muted); line-height: 1.7; }
+    .research-desc strong { color: var(--ink); font-weight: 500; }
+
+    /* SKILLS */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+    .skill-group-title {
+      font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--faint); margin-bottom: 10px; padding-bottom: 8px; border-bottom: 0.5px solid var(--line);
+    }
+    body.zh .skill-group-title { text-transform: none; letter-spacing: 0.06em; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .skill-tag {
+      font-size: 12px; color: var(--muted); background: white;
+      border: 0.5px solid var(--line); padding: 4px 10px; border-radius: 2px;
+    }
+
+    /* AWARDS */
+    .award-item {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 10px 0; border-bottom: 0.5px solid var(--line);
+    }
+    .award-item:first-child { border-top: 0.5px solid var(--line); }
+    .award-name { font-size: 14px; color: var(--ink); }
+    .award-year { font-size: 12px; color: var(--faint); flex-shrink: 0; margin-left: 1rem; }
+
+    /* FOOTER */
+    footer {
+      padding: 3rem; display: flex; justify-content: space-between;
+      align-items: center; font-size: 12px; color: var(--faint);
+    }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* LANG SHOW/HIDE */
+    [data-lang] { display: none; }
+    body.en [data-lang="en"] { display: block; }
+    body.zh [data-lang="zh"] { display: block; }
+    span[data-lang] { display: none; }
+    body.en span[data-lang="en"] { display: inline; }
+    body.zh span[data-lang="zh"] { display: inline; }
+    li[data-lang] { display: none; }
+    body.en li[data-lang="en"] { display: list-item; }
+    body.zh li[data-lang="zh"] { display: list-item; }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: 11px; }
+      .hero { padding: 0 1.5rem 4rem; }
+      main { padding: 0 1.5rem; }
+      section { grid-template-columns: 1fr; gap: 1.5rem; padding: 3rem 0; }
+      .section-label { position: static; }
+      .exp-item { grid-template-columns: 1fr; gap: 4px; }
+      footer { padding: 2rem 1.5rem; flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body class="en">
+
+  <nav>
+    <span class="nav-logo">
+      <span data-lang="en">Peiji (Jasper) Wang</span>
+      <span data-lang="zh">王培吉</span>
+    </span>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#about"><span data-lang="en">About</span><span data-lang="zh">关于</span></a></li>
+        <li><a href="#experience"><span data-lang="en">Experience</span><span data-lang="zh">实习</span></a></li>
+        <li><a href="#research"><span data-lang="en">Research</span><span data-lang="zh">研究</span></a></li>
+        <li><a href="#skills"><span data-lang="en">Skills</span><span data-lang="zh">技能</span></a></li>
+      </ul>
+      <div class="lang-toggle" id="langToggle">
+        <span id="enBtn" class="active">EN</span>
+        <span id="zhBtn">中</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <p class="hero-eyebrow">
+      <span data-lang="en">MSc Investment · University of Birmingham</span>
+      <span data-lang="zh">伯明翰大学 · 投资学硕士在读</span>
+    </p>
+    <h1 class="hero-name">
+      <span data-lang="en">Peiji<br><em>Jasper</em><br>Wang</span>
+      <span data-lang="zh">王<br><em>培吉</em></span>
+    </h1>
+    <p class="hero-sub">
+      <span data-lang="en">Quantitative researcher with dual degrees in Physics &amp; Finance. Specialising in machine learning for asset pricing, on-chain data analytics, and financial modelling.</span>
+      <span data-lang="zh">物理学与金融学双学位背景，专注于机器学习在资产定价中的应用、链上数据分析与金融建模。</span>
+    </p>
+    <div class="hero-contacts">
+      <a href="mailto:peiji166@qq.com">✉ peiji166@qq.com</a>
+      <a href="tel:+447350129143">✆ +44 7350 129143</a>
+      <a href="https://t.me/SmallASD" target="_blank">✈ Telegram @SmallASD</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-label"><span data-lang="en">About</span><span data-lang="zh">关于我</span></div>
+      <div class="section-body reveal">
+        <div data-lang="en">
+          <p class="about-text">I hold a <strong>BSc in Physics</strong> (Shandong University, 985 Project) with a minor in Finance, and am currently pursuing an <strong>MSc in Investment</strong> at the University of Birmingham (QS 76). My work sits at the intersection of quantitative methods and financial markets — from building <strong>ML forecasting models</strong> (R² up to 0.94) to conducting <strong>blockchain on-chain analysis</strong> across 10+ Web3 ecosystems. I've interned in M&amp;A private equity, investment research, and corporate lending, contributing to projects including a <strong>RMB 1bn investment</strong> in SMIC Ningbo.</p>
+        </div>
+        <div data-lang="zh">
+          <p class="about-text">本科就读于<strong>山东大学（985工程）</strong>，主修物理学、辅修金融学，现就读于<strong>伯明翰大学（QS 76）</strong>投资学硕士项目。研究方向横跨量化方法与金融市场，包括构建<strong>机器学习预测模型</strong>（R²最高达0.94）以及对10余个Web3生态系统进行<strong>链上数据分析</strong>。曾在并购私募、投资研究及企业信贷领域实习，参与了包括<strong>中芯宁波约10亿元投资项目</strong>在内的多项工作。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education">
+      <div class="section-label"><span data-lang="en">Education</span><span data-lang="zh">教育背景</span></div>
+      <div class="section-body">
+        <div class="edu-item reveal">
+          <div class="edu-school"><span data-lang="en">University of Birmingham</span><span data-lang="zh">伯明翰大学</span></div>
+          <div class="edu-degree"><span data-lang="en">MSc Investment</span><span data-lang="zh">理学硕士 · 投资学</span></div>
+          <div class="edu-date"><span data-lang="en">Sep 2025 — Expected Aug 2026 · QS 76</span><span data-lang="zh">2025.09 — 预计2026.08 · QS 76</span></div>
+          <div class="edu-courses"><span data-lang="en">Blockchain &amp; Financial Applications · Financial Econometrics · Portfolio Theory · Private Equity &amp; Venture Finance · Risk Management · Security Valuation</span><span data-lang="zh">区块链金融应用 · 金融计量经济学 · 投资组合理论 · 私募股权与风险投资 · 金融市场风险管理 · 证券估值与财务报表分析</span></div>
+        </div>
+        <div class="edu-item reveal">
+          <div class="edu-school"><span data-lang="en">Shandong University</span><span data-lang="zh">山东大学</span></div>
+          <div class="edu-degree"><span data-lang="en">BSc Physics (Major) · BEcon Finance (Minor)</span><span data-lang="zh">理学学士 · 物理学（主修）· 经济学学士 · 金融学（辅修）</span></div>
+          <div class="edu-date"><span data-lang="en">Sep 2021 — Sep 2025 · National 985 Project University</span><span data-lang="zh">2021.09 — 2025.09 · 全国985工程重点大学</span></div>
+          <div class="edu-courses"><span data-lang="en">Asset Pricing · Machine Learning · Advanced Mathematics · Monetary Finance · Financial Markets · C++ · Statistics</span><span data-lang="zh">资产定价 · 机器学习 · 高等数学 · 货币金融学 · 金融市场 · C++ · 统计学</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="section-label"><span data-lang="en">Experience</span><span data-lang="zh">实习经历</span></div>
+      <div class="section-body">
+
+        <div class="exp-item reveal">
+          <div class="exp-date"><span data-lang="en">Jan–Feb 2023<br>&amp;<br>Jun–Jul 2023</span><span data-lang="zh">2023.01–02<br>&amp;<br>2023.06–07</span></div>
+          <div class="exp-right">
+            <div class="exp-company"><span data-lang="en">Peng Capital</span><span data-lang="zh">高鹏资本</span></div>
+            <div class="exp-role"><span data-lang="en">Investment Analyst Intern · M&amp;A and Private Equity · Beijing</span><span data-lang="zh">投资分析实习生 · 并购部及私募股权部 · 北京</span></div>
+            <ul class="exp-bullets">
+              <li data-lang="en">Conducted industry and market research in semiconductor &amp; IC sectors; informed investment evaluation for multiple tech companies.</li>
+              <li data-lang="zh">参与半导体及集成电路行业研究，梳理产业链结构、竞争格局及核心技术路线，为潜在投资标的筛选提供支持。</li>
+              <li data-lang="en">Built financial models and valuation forecasts using DCF and comparable company analysis; refined capital cost assumptions.</li>
+              <li data-lang="zh">协助搭建DCF及可比公司估值模型，完善资本成本与情景假设，参与财务预测分析。</li>
+              <li data-lang="en">Supported due diligence for SMIC Ningbo, contributing to a RMB 1bn investment — data collection, validation, and risk assessment.</li>
+              <li data-lang="zh">参与中芯宁波项目尽职调查，整理经营数据与行业政策，为约10亿元投资项目提供分析支持。</li>
+              <li data-lang="en">Authored investment memos summarising key risks, market drivers, and financial highlights for senior meetings.</li>
+              <li data-lang="zh">撰写投资备忘录，梳理核心风险、行业逻辑与标的公司竞争优势，制作项目汇报PPT。</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item reveal">
+          <div class="exp-date"><span data-lang="en">Jul–Aug 2024</span><span data-lang="zh">2024.07–08</span></div>
+          <div class="exp-right">
+            <div class="exp-company"><span data-lang="en">SDIC Securities</span><span data-lang="zh">国投证券</span></div>
+            <div class="exp-role"><span data-lang="en">Investment Research Intern · Shandong</span><span data-lang="zh">投资研究实习生 · 山东</span></div>
+            <ul class="exp-bullets">
+              <li data-lang="en">Attended daily research briefings; produced equities, macro, and sector market summaries.</li>
+              <li data-lang="zh">参与每日研究晨会，跟踪宏观、行业及个股市场动态，撰写简要市场点评。</li>
+              <li data-lang="en">Covered fund roadshows and analyst presentations totalling 50+ hours; completed 200+ hours of internal technical-analysis training.</li>
+              <li data-lang="zh">累计参与基金路演与分析师会议50+小时，完成200+小时技术分析内训，系统学习市场行为分析与交易策略。</li>
+              <li data-lang="en">Coordinated data gathering to support market commentary and sector updates.</li>
+              <li data-lang="zh">协助研究员收集行业及公司数据，支持市场分析与研究报告准备工作。</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item reveal">
+          <div class="exp-date"><span data-lang="en">Feb–Mar 2024</span><span data-lang="zh">2024.02–03</span></div>
+          <div class="exp-right">
+            <div class="exp-company"><span data-lang="en">Bank of China</span><span data-lang="zh">中国银行</span></div>
+            <div class="exp-role"><span data-lang="en">Corporate Lending Intern · Shandong</span><span data-lang="zh">企业信贷实习生 · 普惠金融部 · 山东</span></div>
+            <ul class="exp-bullets">
+              <li data-lang="en">Reviewed financial statements of 5 corporate clients; analysed liquidity, leverage, and cash-flow indicators for lending assessments.</li>
+              <li data-lang="zh">协助审核5家企业财务报表，分析流动性、杠杆水平与现金流结构，支持贷款评估工作。</li>
+              <li data-lang="en">Assisted evaluation of revolving and collateralised loans; contributed to credit due diligence reports.</li>
+              <li data-lang="zh">参与循环贷及抵押贷款授信资料整理，协助完成企业信贷尽调报告。</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- RESEARCH -->
+    <section id="research">
+      <div class="section-label"><span data-lang="en">Research</span><span data-lang="zh">研究经历</span></div>
+      <div class="section-body">
+
+        <div class="research-item reveal">
+          <div class="research-title"><span data-lang="en">International Gold Price Forecasting Using Machine Learning</span><span data-lang="zh">国际黄金期货价格预测</span></div>
+          <div class="research-date"><span data-lang="en">Oct 2024 — Jun 2025</span><span data-lang="zh">2024.10 — 2025.06</span></div>
+          <div class="research-desc"><span data-lang="en">Applied <strong>Random Forest and LSTM</strong> models to forecast international gold futures prices across 12 models, achieving test-set <strong>R² up to 0.89</strong>. Processed over 1 million data points including macroeconomic variables, market indicators, and satellite remote-sensing data.</span><span data-lang="zh">基于<strong>Random Forest与LSTM</strong>构建12个预测模型，测试集<strong>R²最高达0.89</strong>。整合宏观指标、市场数据及卫星遥感数据，处理百万级数据集。</span></div>
+        </div>
+
+        <div class="research-item reveal">
+          <div class="research-title"><span data-lang="en">ESG Ratings &amp; Macroeconomic Indicators — Nonlinear Relationship Modelling</span><span data-lang="zh">ESG评级与宏观经济指标非线性关系研究</span></div>
+          <div class="research-date"><span data-lang="en">Nov 2024 — May 2025</span><span data-lang="zh">2024.11 — 2025.05</span></div>
+          <div class="research-desc"><span data-lang="en">Analysed nonlinear interactions between A-share corporate <strong>ESG scores</strong> and macroeconomic factors using <strong>Random Forest and LSTM RNN</strong>, achieving <strong>R² up to 0.94</strong>. Managed multi-source datasets with millions of entries.</span><span data-lang="zh">使用<strong>Random Forest与LSTM RNN</strong>分析A股上市企业<strong>ESG评级与宏观变量</strong>之间的非线性关系，多模型对比框架下<strong>R²最高达0.94</strong>，完成多源百万级数据清洗与特征工程。</span></div>
+        </div>
+
+        <div class="research-item reveal">
+          <div class="research-title"><span data-lang="en">Satellite-Navigation Remote Sensing for Financial Applications</span><span data-lang="zh">遥感数据在金融市场中的应用研究</span></div>
+          <div class="research-date"><span data-lang="en">Sep 2022 — Jan 2025</span><span data-lang="zh">2022.09 — 2025.01</span></div>
+          <div class="research-desc"><span data-lang="en">Leveraged night-light, vegetation, and rainfall <strong>remote-sensing datasets</strong> to estimate population and urbanisation. Built predictive models for <strong>Si/Al metal prices and electricity pricing</strong>; explored insurance pricing applications.</span><span data-lang="zh">利用夜光、降雨、植被覆盖率等<strong>遥感数据</strong>估计城镇化与人口指标；构建模型预测<strong>硅、铝大宗商品价格</strong>及电力价格，探索遥感数据在保险定价中的应用。</span></div>
+        </div>
+
+        <div class="research-item reveal">
+          <div class="research-title"><span data-lang="en">GNSS Multipath Signal Analysis</span><span data-lang="zh">GNSS多路径信号分析</span></div>
+          <div class="research-date"><span data-lang="en">Nov 2021 — Jun 2023</span><span data-lang="zh">2021.11 — 2023.06</span></div>
+          <div class="research-desc"><span data-lang="en">Studied GNSS signal multipath characteristics and their application in soil moisture detection using MATLAB — signal processing, 9th-order Lagrange interpolation, and least-squares fitting. Awarded <strong>Shandong University Student Research Training First Prize (2023)</strong>.</span><span data-lang="zh">研究GNSS信号多路径特性及其在土壤湿度检测中的应用，使用MATLAB进行信号处理、9阶拉格朗日插值及最小二乘建模。荣获<strong>山东大学大学生科研训练计划一等奖（2023）</strong>。</span></div>
+        </div>
+
+        <div class="research-item reveal">
+          <div class="research-title"><span data-lang="en">Web3 &amp; On-Chain Data Analytics</span><span data-lang="zh">Web3 / 区块链链上数据研究</span></div>
+          <div class="research-date"><span data-lang="en">2022 — Present</span><span data-lang="zh">2022 — 至今</span></div>
+          <div class="research-desc"><span data-lang="en">2+ years of blockchain and derivatives trading research. Proficient in <strong>Dune Analytics (SQL), Nansen, Glassnode, and CryptoQuant</strong> for DeFi capital flow analysis, whale tracking, and market sentiment. Authored research reports on Web3 projects and BNB market cap dynamics. Deployed 12 Nillion project nodes; conducted interactions across 10+ Web3 ecosystems.</span><span data-lang="zh">2年以上区块链及衍生品交易研究经验，熟练使用<strong>Dune Analytics、Nansen、Glassnode、CryptoQuant</strong>等工具分析DeFi资金流、巨鲸行为及市场情绪。独立撰写Web3项目与BNB市值分析研究报告，部署运营12个Nillion节点，参与10余个Web3生态交互并获得空投。</span></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="section-label"><span data-lang="en">Skills</span><span data-lang="zh">技能</span></div>
+      <div class="section-body reveal">
+        <div class="skills-grid">
+          <div class="skill-group">
+            <div class="skill-group-title"><span data-lang="en">Machine Learning</span><span data-lang="zh">机器学习</span></div>
+            <div class="skill-tags">
+              <span class="skill-tag">Random Forest</span>
+              <span class="skill-tag">LSTM / RNN</span>
+              <span class="skill-tag"><span data-lang="en">Time-series modelling</span><span data-lang="zh">时间序列建模</span></span>
+              <span class="skill-tag"><span data-lang="en">Feature engineering</span><span data-lang="zh">特征工程</span></span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-title"><span data-lang="en">Finance</span><span data-lang="zh">金融研究</span></div>
+            <div class="skill-tags">
+              <span class="skill-tag"><span data-lang="en">DCF Valuation</span><span data-lang="zh">DCF估值</span></span>
+              <span class="skill-tag"><span data-lang="en">Factor modelling</span><span data-lang="zh">因子研究</span></span>
+              <span class="skill-tag"><span data-lang="en">Derivatives</span><span data-lang="zh">衍生品分析</span></span>
+              <span class="skill-tag"><span data-lang="en">ESG analytics</span><span data-lang="zh">ESG分析</span></span>
+              <span class="skill-tag"><span data-lang="en">Financial statements</span><span data-lang="zh">财务报表分析</span></span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-title"><span data-lang="en">Programming</span><span data-lang="zh">编程</span></div>
+            <div class="skill-tags">
+              <span class="skill-tag">Stata</span>
+              <span class="skill-tag">MATLAB</span>
+              <span class="skill-tag">C++</span>
+              <span class="skill-tag">SQL (Dune)</span>
+              <span class="skill-tag">LabVIEW</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-title"><span data-lang="en">Data &amp; Tools</span><span data-lang="zh">数据工具</span></div>
+            <div class="skill-tags">
+              <span class="skill-tag">Bloomberg</span>
+              <span class="skill-tag">Wind</span>
+              <span class="skill-tag">Glassnode</span>
+              <span class="skill-tag">CryptoQuant</span>
+              <span class="skill-tag">Excel</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-title"><span data-lang="en">Languages</span><span data-lang="zh">语言</span></div>
+            <div class="skill-tags">
+              <span class="skill-tag"><span data-lang="en">Chinese (Native)</span><span data-lang="zh">中文（母语）</span></span>
+              <span class="skill-tag"><span data-lang="en">English (Fluent)</span><span data-lang="zh">英文（流利）</span></span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-title"><span data-lang="en">Interests</span><span data-lang="zh">兴趣特长</span></div>
+            <div class="skill-tags">
+              <span class="skill-tag"><span data-lang="en">Go (1 Dan)</span><span data-lang="zh">围棋（1段）</span></span>
+              <span class="skill-tag"><span data-lang="en">Dizi Flute (Grade 10)</span><span data-lang="zh">竹笛（10级）</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AWARDS -->
+    <section id="awards">
+      <div class="section-label"><span data-lang="en">Awards</span><span data-lang="zh">获奖情况</span></div>
+      <div class="section-body reveal">
+        <div class="award-item">
+          <span class="award-name"><span data-lang="en">Shandong University Student Research Training — First Prize</span><span data-lang="zh">山东大学大学生科研训练计划一等奖</span></span>
+          <span class="award-year">2023</span>
+        </div>
+        <div class="award-item">
+          <span class="award-name"><span data-lang="en">Shandong Province Intelligent Technology Application Competition — Third Prize</span><span data-lang="zh">山东省大学生智能技术应用大赛三等奖</span></span>
+          <span class="award-year">2024</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <span>© 2026 Peiji (Jasper) Wang · 王培吉</span>
+    <span>Birmingham, UK · peiji166@qq.com</span>
+  </footer>
+
+  <script>
+    // ── LANG TOGGLE ──
+    const body = document.body;
+    const enBtn = document.getElementById('enBtn');
+    const zhBtn = document.getElementById('zhBtn');
+
+    function setLang(lang) {
+      body.classList.remove('en', 'zh');
+      body.classList.add(lang);
+      enBtn.classList.toggle('active', lang === 'en');
+      zhBtn.classList.toggle('active', lang === 'zh');
+      document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    }
+
+    document.getElementById('langToggle').addEventListener('click', function() {
+      setLang(body.classList.contains('zh') ? 'en' : 'zh');
+    });
+
+    // ── NAV ANCHOR SCROLL (offset for fixed nav height) ──
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const id = this.getAttribute('href').slice(1);
+        const target = document.getElementById(id);
+        if (!target) return;
+        e.preventDefault();
+        const navH = document.querySelector('nav').offsetHeight;
+        const top = target.getBoundingClientRect().top + window.scrollY - navH - 16;
+        window.scrollTo({ top, behavior: 'smooth' });
+      });
+    });
+
+    // ── SCROLL REVEAL ──
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  </script>
+
+</body>
+</html>
