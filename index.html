@@ -105,7 +105,7 @@
     /* HERO */
     .hero {
       min-height: 100vh; display: flex; flex-direction: column;
-      justify-content: flex-end; padding: 0 3rem 5rem;
+      justify-content: center; padding: 7.5rem 3rem 4.5rem;
       border-bottom: 0.5px solid var(--line);
     }
     .hero-eyebrow {
@@ -224,8 +224,21 @@
     }
 
     /* REVEAL */
-    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal {
+      opacity: 0;
+      transform: translate3d(0, 16px, 0);
+      filter: blur(2px);
+      transition:
+        opacity 0.42s ease-out,
+        transform 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 0.28s ease-out;
+      will-change: opacity, transform, filter;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+      filter: blur(0);
+    }
 
     /* LANG SHOW/HIDE */
     [data-lang] { display: none; }
@@ -238,11 +251,25 @@
     body.en li[data-lang="en"] { display: list-item; }
     body.zh li[data-lang="zh"] { display: list-item; }
 
+    @media (prefers-reduced-motion: reduce) {
+      .reveal,
+      .reveal.visible {
+        opacity: 1;
+        transform: none;
+        filter: none;
+        transition: none;
+      }
+    }
+
     @media (max-width: 700px) {
       nav { padding: 1rem 1.5rem; }
       .nav-right { display: none; }
       .nav-mobile-controls { display: flex; }
-      .hero { padding: 0 1.5rem 4rem; }
+      .hero {
+        min-height: calc(100vh - 12px);
+        justify-content: center;
+        padding: 6.5rem 1.5rem 3.2rem;
+      }
       main { padding: 0 1.5rem; }
       section { grid-template-columns: 1fr; gap: 1.25rem; padding: 2.6rem 0; }
       .section-label { position: static; }
@@ -339,7 +366,7 @@
         </div>
         <div class="edu-item reveal">
           <div class="edu-school"><span data-lang="en">Shandong University</span><span data-lang="zh">山东大学</span></div>
-          <div class="edu-degree"><span data-lang="en">BSc Physics (Major) · BEcon Finance (Minor)</span><span data-lang="zh">理学学士 · 物理学（主修）· 经济学学士 · 金融学（辅修）</span></div>
+          <div class="edu-degree"><span data-lang="en">BSc Physics (Major) · BEcon Finance (Minor)</span><span data-lang="zh">理学学士 · 物理学（主修） | 经济学学士 · 金融学（辅修）</span></div>
           <div class="edu-date"><span data-lang="en">Sep 2021 — Sep 2025 · National 985 Project University</span><span data-lang="zh">2021.09 — 2025.09 · 全国985工程重点大学</span></div>
           <div class="edu-courses"><span data-lang="en">Asset Pricing · Machine Learning · Advanced Mathematics · Monetary Finance · Financial Markets · C++ · Statistics</span><span data-lang="zh">资产定价 · 机器学习 · 高等数学 · 货币金融学 · 金融市场 · C++ · 统计学</span></div>
         </div>
@@ -621,8 +648,17 @@
     });
 
     const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.08 });
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        } else {
+          entry.target.classList.remove('visible');
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -6% 0px'
+    });
 
     document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
   </script>
