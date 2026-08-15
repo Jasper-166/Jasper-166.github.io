@@ -4,51 +4,82 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>王培吉 · Jasper Wang</title>
+  <meta name="description" content="王培吉（Jasper Wang）的个人主页：科技投资研究、半导体与先进制造、估值建模及数据分析。" />
+  <meta name="theme-color" content="#071e2d" />
+  <link rel="canonical" href="https://jasper-166.github.io/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="王培吉 · Jasper Wang" />
+  <meta property="og:description" content="Technology investment research, valuation and data analytics." />
+  <meta property="og:url" content="https://jasper-166.github.io/" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Jost:wght@300;400;500&family=Noto+Serif+SC:wght@300;400&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&amp;family=Noto+Serif+SC:wght@400;500&amp;family=Noto+Sans+SC:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --ink: #1a1a18;
-      --muted: #6b6b66;
-      --faint: #9e9e99;
-      --line: #e2e2dc;
-      --bg: #faf9f7;
-      --accent: #2c4a7c;
+      --ink: #0b2438;
+      --muted: #506679;
+      --faint: #74889a;
+      --line: #c9d6df;
+      --bg: #eaf1f6;
+      --surface: #f9fcfe;
+      --accent: #08727f;
+      --accent-deep: #073c4b;
+      --accent-soft: #d8eaee;
+      --signal: #e36b4d;
+      --night: #071e2d;
+      --shadow: 0 22px 70px rgba(17, 54, 76, 0.12);
     }
     html { scroll-behavior: smooth; }
     body {
-      background: var(--bg);
+      background:
+        linear-gradient(rgba(8,114,127,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(8,114,127,0.035) 1px, transparent 1px),
+        var(--bg);
+      background-size: 48px 48px;
       color: var(--ink);
-      font-family: 'Jost', 'Noto Sans SC', sans-serif;
+      font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif;
       font-weight: 300;
       font-size: 15px;
       line-height: 1.75;
     }
-    body.zh { font-family: 'Noto Sans SC', 'Jost', sans-serif; }
+    body.zh { font-family: 'Noto Sans SC', 'Space Grotesk', sans-serif; }
+    a { color: inherit; }
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--accent); outline-offset: 4px;
+    }
+    .skip-link {
+      position: fixed; left: 1rem; top: -5rem; z-index: 1000;
+      background: var(--ink); color: white; padding: 0.7rem 1rem;
+      border-radius: 8px; text-decoration: none;
+    }
+    .skip-link:focus { top: 1rem; }
 
     /* NAV */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; justify-content: space-between; align-items: center;
       padding: 1.2rem 3rem;
-      background: rgba(250,249,247,0.92);
-      backdrop-filter: blur(8px);
-      border-bottom: 0.5px solid var(--line);
-      gap: 1rem;
+      background: rgba(7,30,45,0.84);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+      gap: 1rem; transition: padding 0.25s ease, box-shadow 0.25s ease;
     }
+    nav.scrolled { padding-top: 0.8rem; padding-bottom: 0.8rem; background: rgba(234,241,246,0.94); border-color: var(--line); box-shadow: 0 8px 28px rgba(13,48,70,0.09); }
     .nav-logo {
-      font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
+      font-family: 'Space Grotesk', 'Noto Sans SC', sans-serif;
       font-size: 18px; font-weight: 400; letter-spacing: 0.05em;
-      color: var(--ink); white-space: nowrap;
+      color: #f6fbff; white-space: nowrap;
     }
+    nav.scrolled .nav-logo { color: var(--ink); }
     .nav-right { display: flex; align-items: center; gap: 2rem; }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a {
       font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--muted); text-decoration: none; transition: color 0.2s;
+      color: #b8cfda; text-decoration: none; transition: color 0.2s;
     }
-    .nav-links a:hover { color: var(--ink); }
+    .nav-links a:hover { color: white; }
+    nav.scrolled .nav-links a { color: var(--muted); }
+    nav.scrolled .nav-links a:hover { color: var(--accent); }
 
     /* MOBILE CONTROLS (lang toggle + hamburger) — hidden on desktop */
     .nav-mobile-controls {
@@ -65,7 +96,7 @@
     }
     .nav-hamburger span {
       display: block; width: 22px; height: 1px;
-      background: var(--ink); transition: transform 0.3s, opacity 0.3s;
+      background: white; transition: transform 0.3s, opacity 0.3s;
       transform-origin: center;
     }
     nav.open .nav-hamburger span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
@@ -77,7 +108,7 @@
       display: none;
       position: fixed; top: 0; left: 0; right: 0; bottom: 0;
       z-index: 99;
-      background: rgba(250,249,247,0.97);
+      background: rgba(7,30,45,0.98);
       backdrop-filter: blur(12px);
       flex-direction: column; justify-content: center; align-items: center;
       gap: 2.2rem; padding: 96px 1.5rem 2rem;
@@ -85,79 +116,161 @@
     nav.open + .nav-mobile-menu { display: flex; }
     .nav-mobile-menu a {
       font-size: 20px; letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--muted); text-decoration: none; transition: color 0.2s;
+      color: #b8cfda; text-decoration: none; transition: color 0.2s;
     }
-    .nav-mobile-menu a:hover { color: var(--ink); }
+    .nav-mobile-menu a:hover { color: white; }
     .nav-mobile-menu .lang-toggle-mobile { margin-top: 0.5rem; }
 
     /* LANG TOGGLE */
     .lang-toggle {
       display: flex; align-items: center;
-      background: white; border: 0.5px solid var(--line); border-radius: 3px;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.18); border-radius: 999px;
       overflow: hidden; font-size: 11px; cursor: pointer; flex-shrink: 0;
     }
-    .lang-toggle span {
+    .lang-toggle button {
       padding: 5px 11px; letter-spacing: 0.08em;
-      color: var(--faint); transition: all 0.2s; user-select: none;
+      color: #a9c1cd; transition: all 0.2s; user-select: none;
+      border: 0; background: transparent; font: inherit; cursor: pointer;
     }
-    .lang-toggle span.active { background: var(--ink); color: var(--bg); }
+    .lang-toggle button.active { background: #62d7d5; color: var(--night); }
+    nav.scrolled .lang-toggle { background: var(--surface); border-color: var(--line); }
+    nav.scrolled .lang-toggle button { color: var(--faint); }
+    nav.scrolled .lang-toggle button.active { background: var(--accent); color: white; }
+    nav.scrolled .nav-hamburger span { background: var(--ink); }
 
     /* HERO */
     .hero {
-      min-height: 100vh; display: flex; flex-direction: column;
-      justify-content: center; padding: 7.5rem 3rem 4.5rem;
-      border-bottom: 0.5px solid var(--line);
+      min-height: 100vh; display: grid; place-items: center;
+      padding: 8.5rem 3rem 5.5rem; position: relative; overflow: hidden;
+      color: #f6fbff; border-bottom: 1px solid rgba(255,255,255,0.08);
+      background:
+        radial-gradient(circle at 78% 20%, rgba(30,190,193,0.23), transparent 24rem),
+        linear-gradient(145deg, #061925 0%, #092c3f 58%, #0b3444 100%);
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(142,220,222,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(142,220,222,0.07) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: linear-gradient(to right, transparent 2%, black 45%, black 100%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: ''; position: absolute; width: 14rem; height: 14rem;
+      right: 7%; top: 18%; background: transparent;
+      border: 1px solid rgba(98,215,213,0.26); border-radius: 50%; pointer-events: none;
+      box-shadow: 0 0 0 3.5rem rgba(98,215,213,0.025), 0 0 0 7rem rgba(98,215,213,0.018);
+    }
+    .hero-shell {
+      width: min(1180px, 100%); display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+      gap: clamp(3rem, 8vw, 8rem); align-items: center; position: relative; z-index: 1;
     }
     .hero-eyebrow {
       font-size: 13.5px; letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--faint); margin-bottom: 1.1rem;
+      color: #8fc3cf; margin-bottom: 1.1rem;
     }
     .hero-name {
-      font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
-      font-size: clamp(52px, 9vw, 96px); font-weight: 300;
-      line-height: 1.0; letter-spacing: -0.02em;
-      color: var(--ink); margin-bottom: 1.5rem;
+      font-family: 'Space Grotesk', 'Noto Serif SC', sans-serif;
+      font-size: clamp(58px, 8vw, 104px); font-weight: 500;
+      line-height: 0.94; letter-spacing: -0.055em;
+      color: #f6fbff; margin-bottom: 1.65rem;
     }
     body.zh .hero-name {
       font-family: 'Noto Serif SC', serif;
       font-size: clamp(48px, 8vw, 88px); letter-spacing: 0.04em;
     }
-    .hero-name em { font-style: italic; color: var(--accent); }
+    .hero-name em { font-style: normal; color: #62d7d5; }
     .hero-sub {
-      font-size: 16px; color: var(--muted); max-width: 520px;
-      margin-bottom: 2.5rem; line-height: 1.7;
+      font-size: 17px; color: #bdd0da; max-width: 620px;
+      margin-bottom: 1.8rem; line-height: 1.8;
     }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.4rem; }
+    .button-link {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem;
+      min-height: 43px; padding: 0.68rem 1.2rem; border-radius: 999px;
+      font-size: 12px; font-weight: 500; letter-spacing: 0.06em;
+      text-decoration: none; border: 1px solid var(--line); transition: all 0.2s ease;
+    }
+    .button-link.primary { background: #62d7d5; border-color: #62d7d5; color: var(--night); }
+    .button-link.secondary { background: transparent; border-color: rgba(255,255,255,.28); color: #f6fbff; }
+    .button-link:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(20,202,199,0.16); }
     .hero-contacts { display: flex; flex-wrap: wrap; gap: 1rem; }
     .hero-contacts a {
       display: inline-flex; align-items: center; gap: 6px;
-      font-size: 12px; letter-spacing: 0.08em; color: var(--muted);
-      text-decoration: none; border: 0.5px solid var(--line);
-      padding: 7px 16px; border-radius: 2px; transition: all 0.2s;
+      font-size: 12px; letter-spacing: 0.08em; color: #a9c1cd;
+      text-decoration: none; border: 1px solid rgba(255,255,255,0.15);
+      padding: 7px 14px; border-radius: 999px; transition: all 0.2s;
     }
-    .hero-contacts a:hover { color: var(--ink); border-color: var(--ink); }
+    .hero-contacts a:hover { color: white; border-color: rgba(255,255,255,.55); }
+    .hero-focus {
+      align-self: center; padding-left: 2.2rem;
+      border-left: 1px solid rgba(255,255,255,0.18);
+    }
+    .hero-focus-label {
+      font-size: 11px; color: #8fc3cf; letter-spacing: 0.16em;
+      text-transform: uppercase; margin-bottom: 0.65rem;
+    }
+    .focus-item {
+      display: grid; grid-template-columns: 38px 1fr; gap: 0.8rem;
+      padding: 1.15rem 0; border-top: 1px solid rgba(255,255,255,0.12);
+    }
+    .focus-number { color: var(--signal); font-size: 11px; letter-spacing: 0.08em; padding-top: 3px; }
+    .focus-title { display: block; color: #f6fbff; font-size: 15px; font-weight: 500; margin-bottom: 0.2rem; }
+    .focus-desc { display: block; color: #9eb7c4; font-size: 11.5px; line-height: 1.55; }
 
     /* MAIN */
-    main { max-width: 1100px; margin: 0 auto; padding: 0 3rem; }
+    main { max-width: 1180px; margin: 0 auto; padding: 0 3rem; }
     section {
       display: grid; grid-template-columns: 200px 1fr;
-      gap: 0 4rem; padding: 4rem 0; border-bottom: 0.5px solid var(--line);
+      gap: 0 4rem; padding: 5.5rem 0; border-bottom: 1px solid var(--line);
     }
     .section-label {
       font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase;
       color: var(--faint); padding-top: 4px; position: sticky;
       top: 80px; align-self: start;
     }
+    .section-label::before {
+      content: ''; display: inline-block; width: 8px; height: 8px;
+      margin-right: 10px; background: var(--signal); border-radius: 2px;
+      box-shadow: 12px 0 0 rgba(227,107,77,0.22);
+    }
 
     /* ABOUT */
-    .about-text { font-size: 17px; line-height: 1.85; color: var(--muted); max-width: 620px; }
+    .about-text { font-size: 16px; line-height: 1.9; color: var(--muted); max-width: 780px; }
+    .about-text + .about-text { margin-top: 1rem; }
     .about-text strong { color: var(--ink); font-weight: 500; }
 
+    /* FEATURED WORK */
+    .work-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1rem; }
+    .work-card {
+      min-height: 260px; display: flex; flex-direction: column; padding: 1.6rem;
+      position: relative; overflow: hidden;
+      background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+      box-shadow: 0 12px 35px rgba(18,61,83,0.055); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    }
+    .work-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--accent), #47bac1 65%, var(--signal));
+      transform: scaleX(.28); transform-origin: left; transition: transform .28s ease;
+    }
+    .work-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: #9dbac5; }
+    .work-card:hover::before { transform: scaleX(1); }
+    .work-index { color: var(--signal); font-size: 11px; letter-spacing: .13em; text-transform: uppercase; }
+    .work-title { font-size: 19px; line-height: 1.35; font-weight: 500; margin: 1rem 0 .65rem; }
+    .work-desc { color: var(--muted); font-size: 13.5px; line-height: 1.7; }
+    .work-meta { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 1rem; }
+    .work-meta span { font-size: 10.5px; color: var(--accent); background: var(--accent-soft); padding: .3rem .55rem; border-radius: 999px; }
+    .work-link { margin-top: auto; padding-top: 1.2rem; color: var(--accent); font-size: 12px; font-weight: 500; text-decoration: none; }
+    .work-link:hover { text-decoration: underline; }
+
     /* EDUCATION */
-    .edu-item { margin-bottom: 2.5rem; }
+    .edu-item { margin-bottom: 1.1rem; padding: 1.4rem 1.5rem; background: rgba(249,252,254,.82); border-left: 3px solid var(--accent); border-radius: 0 12px 12px 0; }
     .edu-item:last-child { margin-bottom: 0; }
     .edu-school {
-      font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
-      font-size: 22px; font-weight: 400; color: var(--ink); margin-bottom: 2px;
+      font-family: 'Space Grotesk', 'Noto Serif SC', sans-serif;
+      font-size: 21px; font-weight: 500; color: var(--ink); margin-bottom: 2px;
     }
     body.zh .edu-school { font-family: 'Noto Serif SC', serif; font-size: 19px; }
     .edu-degree { font-size: 13px; color: var(--accent); font-weight: 500; margin-bottom: 3px; }
@@ -167,9 +280,12 @@
     /* EXPERIENCE */
     .exp-item {
       display: grid; grid-template-columns: 140px 1fr; gap: 0 2rem;
-      margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 0.5px solid var(--line);
+      margin-bottom: 1rem; padding: 1.5rem; border: 1px solid var(--line);
+      border-left: 4px solid transparent; border-radius: 12px; background: rgba(249,252,254,0.82);
+      transition: border-color .22s ease, transform .22s ease, background .22s ease;
     }
-    .exp-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .exp-item:hover { border-left-color: var(--accent); transform: translateX(4px); background: var(--surface); }
+    .exp-item:last-child { margin-bottom: 0; }
     .exp-date { font-size: 12px; color: var(--faint); padding-top: 3px; line-height: 1.5; }
     .exp-company { font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 3px; }
     .exp-role {
@@ -183,20 +299,22 @@
       position: relative; margin-bottom: 5px; line-height: 1.65;
     }
     .exp-bullets li::before {
-      content: '—'; position: absolute; left: 0;
-      color: var(--line); font-size: 11px; top: 3px;
+      content: '·'; position: absolute; left: 1px;
+      color: var(--signal); font-size: 18px; top: -3px;
     }
 
     /* RESEARCH */
-    .research-item { margin-bottom: 1.8rem; padding-bottom: 1.8rem; border-bottom: 0.5px solid var(--line); }
-    .research-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .research-item { margin-bottom: .8rem; padding: 1.25rem 1.35rem; border: 1px solid var(--line); border-radius: 10px; background: rgba(249,252,254,.66); transition: background .2s ease, border-color .2s ease; }
+    .research-item:hover { background: var(--surface); border-color: #9dbac5; }
+    .research-item:last-child { margin-bottom: 0; }
     .research-title { font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
     .research-date { font-size: 12px; color: var(--faint); margin-bottom: 8px; }
     .research-desc { font-size: 13.5px; color: var(--muted); line-height: 1.7; }
     .research-desc strong { color: var(--ink); font-weight: 500; }
 
     /* SKILLS */
-    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+    .skill-group { padding: 1.15rem; border: 1px solid var(--line); border-radius: 10px; background: rgba(249,252,254,.82); }
     .skill-group-title {
       font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
       color: var(--faint); margin-bottom: 10px; padding-bottom: 8px; border-bottom: 0.5px solid var(--line);
@@ -204,8 +322,8 @@
     body.zh .skill-group-title { text-transform: none; letter-spacing: 0.06em; }
     .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
     .skill-tag {
-      font-size: 12px; color: var(--muted); background: white;
-      border: 0.5px solid var(--line); padding: 4px 10px; border-radius: 2px;
+      font-size: 12px; color: var(--muted); background: #edf5f8;
+      border: 0.5px solid var(--line); padding: 4px 10px; border-radius: 999px;
     }
 
     /* AWARDS */
@@ -220,8 +338,28 @@
     /* FOOTER */
     footer {
       padding: 3rem; display: flex; justify-content: space-between;
-      align-items: center; font-size: 12px; color: var(--faint);
+      align-items: center; font-size: 12px; color: #9eb7c4;
+      background: var(--night); border-top: 1px solid rgba(255,255,255,.08);
     }
+
+    /* CUSTOM CURSOR — desktop mouse only */
+    .cursor-dot, .cursor-ring {
+      position: fixed; left: 0; top: 0; z-index: 9999; pointer-events: none;
+      opacity: 0; transform: translate(-50%, -50%);
+    }
+    .cursor-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--signal); }
+    .cursor-ring {
+      width: 30px; height: 30px; border: 1px solid #2eb9bd; border-radius: 50%;
+      transition: width .18s ease, height .18s ease, border-color .18s ease, background .18s ease;
+    }
+    .cursor-ring::before, .cursor-ring::after {
+      content: ''; position: absolute; left: 50%; top: 50%; background: rgba(46,185,189,.55);
+      transform: translate(-50%,-50%);
+    }
+    .cursor-ring::before { width: 6px; height: 1px; }
+    .cursor-ring::after { width: 1px; height: 6px; }
+    html.custom-cursor, html.custom-cursor * { cursor: none !important; }
+    body.cursor-active .cursor-ring { width: 46px; height: 46px; border-color: var(--signal); background: rgba(227,107,77,.08); }
 
     /* REVEAL */
     .reveal {
@@ -252,6 +390,7 @@
     body.zh li[data-lang="zh"] { display: list-item; }
 
     @media (prefers-reduced-motion: reduce) {
+      .cursor-dot, .cursor-ring { display: none !important; }
       .reveal,
       .reveal.visible {
         opacity: 1;
@@ -270,15 +409,30 @@
         justify-content: center;
         padding: 6.5rem 1.5rem 3.2rem;
       }
+      .hero-shell { grid-template-columns: 1fr; gap: 2rem; }
+      .hero::before { background-size: 42px 42px; }
+      .hero-focus { padding: 1.2rem 0 0; border-left: 0; border-top: 1px solid rgba(255,255,255,0.18); }
+      .work-grid { grid-template-columns: 1fr; }
+      .work-card { min-height: 0; }
       main { padding: 0 1.5rem; }
       section { grid-template-columns: 1fr; gap: 1.25rem; padding: 2.6rem 0; }
       .section-label { position: static; }
       .exp-item { grid-template-columns: 1fr; gap: 4px; }
       footer { padding: 2rem 1.5rem; flex-direction: column; gap: 8px; text-align: center; }
     }
+    @media (min-width: 701px) and (max-width: 980px) {
+      .hero-shell { grid-template-columns: 1fr 320px; gap: 2.5rem; }
+      .nav-links { gap: 1rem; }
+      section { grid-template-columns: 150px 1fr; gap: 0 2rem; }
+    }
   </style>
 </head>
 <body class="en">
+
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main-content"><span data-lang="en">Skip to content</span><span data-lang="zh">跳到主要内容</span></a>
 
   <nav id="mainNav">
     <span class="nav-logo">
@@ -288,22 +442,22 @@
     <div class="nav-right">
       <ul class="nav-links">
         <li><a href="#about"><span data-lang="en">About</span><span data-lang="zh">关于</span></a></li>
+        <li><a href="#work"><span data-lang="en">Selected Work</span><span data-lang="zh">代表项目</span></a></li>
         <li><a href="#experience"><span data-lang="en">Experience</span><span data-lang="zh">实习</span></a></li>
-        <li><a href="#research"><span data-lang="en">Research</span><span data-lang="zh">研究</span></a></li>
         <li><a href="#skills"><span data-lang="en">Skills</span><span data-lang="zh">技能</span></a></li>
       </ul>
-      <div class="lang-toggle" id="langToggle">
-        <span id="enBtn" class="active">EN</span>
-        <span id="zhBtn">中</span>
+      <div class="lang-toggle" aria-label="Language selector">
+        <button type="button" id="enBtn" class="active" data-set-lang="en" aria-pressed="true">EN</button>
+        <button type="button" id="zhBtn" data-set-lang="zh" aria-pressed="false">中</button>
       </div>
     </div>
     <!-- Mobile: lang toggle + hamburger always visible -->
     <div class="nav-mobile-controls">
-      <div class="lang-toggle" id="langToggleMobile">
-        <span id="enBtnM" class="active">EN</span>
-        <span id="zhBtnM">中</span>
+      <div class="lang-toggle" aria-label="Language selector">
+        <button type="button" id="enBtnM" class="active" data-set-lang="en" aria-pressed="true">EN</button>
+        <button type="button" id="zhBtnM" data-set-lang="zh" aria-pressed="false">中</button>
       </div>
-      <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -311,6 +465,7 @@
 
   <div class="nav-mobile-menu" id="mobileMenu">
     <a href="#about"><span data-lang="en">About</span><span data-lang="zh">关于</span></a>
+    <a href="#work"><span data-lang="en">Selected Work</span><span data-lang="zh">代表项目</span></a>
     <a href="#education"><span data-lang="en">Education</span><span data-lang="zh">教育</span></a>
     <a href="#experience"><span data-lang="en">Experience</span><span data-lang="zh">实习</span></a>
     <a href="#research"><span data-lang="en">Research</span><span data-lang="zh">研究</span></a>
@@ -320,37 +475,98 @@
 
   <!-- HERO -->
   <header class="hero">
-    <p class="hero-eyebrow">
-      <span data-lang="en">MSc Investment · University of Birmingham</span>
-      <span data-lang="zh">伯明翰大学 · 投资学硕士在读</span>
-    </p>
-    <h1 class="hero-name">
-      <span data-lang="en"><em>Jasper</em><br>Wang</span>
-      <span data-lang="zh">王<br><em>培吉</em></span>
-    </h1>
-    <p class="hero-sub">
-      <span data-lang="en">Quantitative researcher with dual degrees in Physics &amp; Finance. Specialising in machine learning for asset pricing, on-chain data analytics, and financial modelling.</span>
-      <span data-lang="zh">物理学与金融学双学位背景，专注于机器学习在资产定价中的应用、链上数据分析与金融建模。</span>
-    </p>
-    <div class="hero-contacts">
-      <a href="mailto:peiji166@qq.com">✉ peiji166@qq.com</a>
-      <a href="tel:+447350129143">✆ +44 7350 129143</a>
-      <a href="https://t.me/SmallASD" target="_blank">✈ Telegram @SmallASD</a>
+    <div class="hero-shell">
+      <div class="hero-copy">
+        <p class="hero-eyebrow">
+          <span data-lang="en">Technology Investment · Data Analytics · Financial Research</span>
+          <span data-lang="zh">科技投资研究 · 数据分析 · 金融研究</span>
+        </p>
+        <h1 class="hero-name">
+          <span data-lang="en"><em>Jasper</em><br>Wang</span>
+          <span data-lang="zh">王<br><em>培吉</em></span>
+        </h1>
+        <p class="hero-sub">
+          <span data-lang="en">Physics-trained investment researcher combining technical understanding, industry research, valuation and data analytics — with a focus on semiconductors and advanced manufacturing.</span>
+          <span data-lang="zh">以物理学理解技术，以金融学评估价值，以数据分析支持判断——关注半导体、先进制造与科技投资研究。</span>
+        </p>
+        <div class="hero-actions">
+          <a class="button-link primary" href="#work"><span data-lang="en">Explore selected work</span><span data-lang="zh">查看代表项目</span> <span aria-hidden="true">↓</span></a>
+          <a class="button-link secondary" href="mailto:peiji166@qq.com"><span data-lang="en">Get in touch</span><span data-lang="zh">联系我</span></a>
+        </div>
+        <div class="hero-contacts">
+          <a href="mailto:peiji166@qq.com">✉ peiji166@qq.com</a>
+          <a href="tel:+447350129143">✆ +44 7350 129143</a>
+          <a href="https://t.me/SmallASD" target="_blank" rel="noreferrer">✈ Telegram @SmallASD</a>
+        </div>
+      </div>
+      <aside class="hero-focus" aria-label="Research approach">
+        <div class="hero-focus-label"><span data-lang="en">Research approach</span><span data-lang="zh">研究方法</span></div>
+        <div class="focus-list">
+          <div class="focus-item">
+            <span class="focus-number">01</span>
+            <div><span class="focus-title"><span data-lang="en">Understand the technology</span><span data-lang="zh">理解技术</span></span><span class="focus-desc"><span data-lang="en">Industry chains, technical routes and product logic</span><span data-lang="zh">产业链、技术路线与产品逻辑</span></span></div>
+          </div>
+          <div class="focus-item">
+            <span class="focus-number">02</span>
+            <div><span class="focus-title"><span data-lang="en">Assess the value</span><span data-lang="zh">评估价值</span></span><span class="focus-desc"><span data-lang="en">Financial modelling, valuation and risk framing</span><span data-lang="zh">财务建模、估值与风险判断</span></span></div>
+          </div>
+          <div class="focus-item">
+            <span class="focus-number">03</span>
+            <div><span class="focus-title"><span data-lang="en">Validate with data</span><span data-lang="zh">数据验证</span></span><span class="focus-desc"><span data-lang="en">Reproducible analysis and evidence-based conclusions</span><span data-lang="zh">可复核分析与证据驱动结论</span></span></div>
+          </div>
+        </div>
+      </aside>
     </div>
   </header>
 
-  <main>
+  <main id="main-content">
 
     <!-- ABOUT -->
     <section id="about">
       <div class="section-label"><span data-lang="en">About</span><span data-lang="zh">关于我</span></div>
       <div class="section-body reveal">
         <div data-lang="en">
-          <p class="about-text">I hold a <strong>BSc in Physics</strong> (Shandong University, 985 Project) with a minor in Finance, and am currently pursuing an <strong>MSc in Investment</strong> at the University of Birmingham (QS 76). My work sits at the intersection of quantitative methods and financial markets — from building <strong>ML forecasting models</strong> (R² up to 0.94) to conducting <strong>blockchain on-chain analysis</strong> across 10+ Web3 ecosystems. I've interned in M&amp;A private equity, investment research, and corporate lending, contributing to projects including a <strong>RMB 1bn investment</strong> in SMIC Ningbo.</p>
+          <p class="about-text">I studied <strong>Physics at Shandong University</strong> with a minor in Finance and am currently pursuing an <strong>MSc in Investment at the University of Birmingham</strong>. This training gives me an interdisciplinary foundation across physics, finance and data analytics. During my undergraduate and postgraduate studies, I have worked on financial-market forecasting, asset pricing, corporate valuation and industry research, using machine-learning methods for financial data modelling. One of these projects received a <strong>university-level first prize</strong>.</p>
+          <p class="about-text">Through internships and project work in private equity, securities research, commercial banking and customer analytics, I have contributed to industry research, financial and valuation analysis, due diligence, meeting documentation and broader research support. I value accuracy, responsibility and dependable execution, and am comfortable working in demanding, fast-paced research environments.</p>
+          <p class="about-text">I maintain a sustained interest in technology, AI, geopolitics, capital markets and emerging industries. Curious by nature, I enjoy learning new methods quickly and putting them into practice. I hope to deepen my capabilities in securities and investment research, producing rigorous and timely work that supports team decisions and client service.</p>
         </div>
         <div data-lang="zh">
-          <p class="about-text">本科就读于<strong>山东大学（985工程）</strong>，主修物理学、辅修金融学，现就读于<strong>伯明翰大学（QS 76）</strong>投资学硕士项目。研究方向横跨量化方法与金融市场，包括构建<strong>机器学习预测模型</strong>（R²最高达0.94）以及对10余个Web3生态系统进行<strong>链上数据分析</strong>。曾在并购私募、投资研究及企业信贷领域实习，参与了包括<strong>中芯宁波约10亿元投资项目</strong>在内的多项工作。</p>
+          <p class="about-text">本科就读于<strong>山东大学物理学专业</strong>并辅修金融学，目前为<strong>伯明翰大学投资学硕士</strong>在读，具备物理、金融与数据分析的复合背景。本科及硕士期间，我围绕金融市场预测、资产定价、公司估值和产业研究开展了多项研究，并运用机器学习方法进行金融数据建模，相关科研项目获得<strong>校级一等奖</strong>。</p>
+          <p class="about-text">在私募股权机构、证券公司、商业银行及客户数据分析项目中，我参与过行业研究、财务与估值分析、尽职调查、会议纪要和研究支持等工作，对资本市场、产业逻辑与企业基本面分析积累了较为扎实的实践认识。工作中注重准确性和可复核性，责任心强、执行效率高，能够适应高强度、快节奏的研究环境。</p>
+          <p class="about-text">我性格积极，习惯保持稳定而充实的学习节奏，持续关注科技、AI、地缘政治、资本市场及新兴产业，对新事物保持好奇，并乐于快速学习和投入实践。希望未来在证券研究与投研工作中持续提升专业能力，以扎实、及时、可复核的研究成果支持团队决策与客户服务。</p>
         </div>
+      </div>
+    </section>
+
+    <!-- SELECTED WORK -->
+    <section id="work">
+      <div class="section-label"><span data-lang="en">Selected Work</span><span data-lang="zh">代表项目</span></div>
+      <div class="section-body work-grid">
+        <article class="work-card reveal">
+          <div class="work-index">01 · Investment Research</div>
+          <h2 class="work-title"><span data-lang="en">Semiconductor Industry &amp; Investment Analysis</span><span data-lang="zh">半导体产业与投资分析</span></h2>
+          <p class="work-desc"><span data-lang="en">Mapped industry chains, technology routes and competitive dynamics; supported DCF and comparable-company valuation, due diligence and investment memo preparation.</span><span data-lang="zh">梳理产业链、技术路线与竞争格局，支持DCF及可比公司估值、尽职调查和投资备忘录准备。</span></p>
+          <div class="work-meta"><span>Semiconductors</span><span>DCF</span><span>Due Diligence</span></div>
+        </article>
+        <article class="work-card reveal">
+          <div class="work-index">02 · Customer Analytics</div>
+          <h2 class="work-title"><span data-lang="en">Richemont China CRM Customer Insight</span><span data-lang="zh">历峰中国CRM客户洞察</span></h2>
+          <p class="work-desc"><span data-lang="en">Built a reproducible customer-screening workflow using 4,000 simulated CRM records, identifying 101 high-priority activation customers and translating the analysis into activation recommendations.</span><span data-lang="zh">基于4,000名模拟CRM客户数据建立可复核的筛选流程，识别101名重点激活客户，并转化为客户激活建议。</span></p>
+          <div class="work-meta"><span>Python</span><span>Excel</span><span>Segmentation</span></div>
+        </article>
+        <article class="work-card reveal">
+          <div class="work-index">03 · Product &amp; Finance</div>
+          <h2 class="work-title"><span data-lang="en">Options Strategy Simulation &amp; Learning Platform</span><span data-lang="zh">期权策略模拟与教育平台</span></h2>
+          <p class="work-desc"><span data-lang="en">Designed and built an interactive bilingual platform covering payoff diagrams, Greeks, strategy comparison and scenario analysis.</span><span data-lang="zh">设计并搭建双语交互平台，覆盖收益图、Greeks、策略比较、情景分析及基础教学模块。</span></p>
+          <div class="work-meta"><span>Product Design</span><span>Options</span><span>AI-assisted Coding</span></div>
+          <a class="work-link" href="https://by554.github.io/TCJOptions" target="_blank" rel="noreferrer"><span data-lang="en">Open live project ↗</span><span data-lang="zh">查看在线项目 ↗</span></a>
+        </article>
+        <article class="work-card reveal">
+          <div class="work-index">04 · Quantitative Research</div>
+          <h2 class="work-title"><span data-lang="en">International Gold Futures Forecasting</span><span data-lang="zh">国际黄金期货价格预测</span></h2>
+          <p class="work-desc"><span data-lang="en">Compared 12 Random Forest and LSTM forecasting models across macro, market, sentiment and remote-sensing features; achieved test-set R² up to 0.89.</span><span data-lang="zh">从宏观、市场、情绪及遥感数据构建特征体系，对比12个Random Forest与LSTM模型，测试集R²最高0.89。</span></p>
+          <div class="work-meta"><span>Random Forest</span><span>LSTM</span><span>Time Series</span></div>
+        </article>
       </div>
     </section>
 
@@ -361,13 +577,13 @@
         <div class="edu-item reveal">
           <div class="edu-school"><span data-lang="en">University of Birmingham</span><span data-lang="zh">伯明翰大学</span></div>
           <div class="edu-degree"><span data-lang="en">MSc Investment</span><span data-lang="zh">理学硕士 · 投资学</span></div>
-          <div class="edu-date"><span data-lang="en">Sep 2025 — Expected Aug 2026 · QS 76</span><span data-lang="zh">2025.09 — 预计2026.08 · QS 76</span></div>
+          <div class="edu-date"><span data-lang="en">Sep 2025 — Expected Dec 2026 · QS 68</span><span data-lang="zh">2025.09 — 预计2026.12 · QS 68</span></div>
           <div class="edu-courses"><span data-lang="en">Blockchain &amp; Financial Applications · Financial Econometrics · Portfolio Theory · Private Equity &amp; Venture Finance · Risk Management · Security Valuation</span><span data-lang="zh">区块链金融应用 · 金融计量经济学 · 投资组合理论 · 私募股权与风险投资 · 金融市场风险管理 · 证券估值与财务报表分析</span></div>
         </div>
         <div class="edu-item reveal">
           <div class="edu-school"><span data-lang="en">Shandong University</span><span data-lang="zh">山东大学</span></div>
           <div class="edu-degree"><span data-lang="en">BSc Physics (Major) · BEcon Finance (Minor)</span><span data-lang="zh">理学学士 · 物理学（主修） | 经济学学士 · 金融学（辅修）</span></div>
-          <div class="edu-date"><span data-lang="en">Sep 2021 — Sep 2025 · National 985 Project University</span><span data-lang="zh">2021.09 — 2025.09 · 全国985工程重点大学</span></div>
+          <div class="edu-date"><span data-lang="en">Sep 2021 — Jun 2025 · National 985 Project University</span><span data-lang="zh">2021.09 — 2025.06 · 全国985工程重点大学</span></div>
           <div class="edu-courses"><span data-lang="en">Asset Pricing · Machine Learning · Advanced Mathematics · Monetary Finance · Financial Markets · C++ · Statistics</span><span data-lang="zh">资产定价 · 机器学习 · 高等数学 · 货币金融学 · 金融市场 · C++ · 统计学</span></div>
         </div>
       </div>
@@ -377,6 +593,34 @@
     <section id="experience">
       <div class="section-label"><span data-lang="en">Experience</span><span data-lang="zh">实习经历</span></div>
       <div class="section-body">
+
+        <div class="exp-item reveal">
+          <div class="exp-date"><span data-lang="en">Jul–Aug 2026</span><span data-lang="zh">2026.07–08</span></div>
+          <div class="exp-right">
+            <div class="exp-company"><span data-lang="en">Richemont China</span><span data-lang="zh">Richemont China（历峰中国）</span></div>
+            <div class="exp-role"><span data-lang="en">Data Analytics &amp; Customer Insight · Remote</span><span data-lang="zh">数据分析与客户洞察 · 远程</span></div>
+            <ul class="exp-bullets">
+              <li data-lang="en">Built a customer-screening framework from 4,000 simulated CRM records using purchase frequency, lifecycle, historical value and interaction signals; identified 101 priority activation customers.</li>
+              <li data-lang="zh">基于4,000名模拟CRM客户数据，从购买频次、客户生命周期、历史价值与互动信号等维度构建筛选框架，识别101名重点激活客户。</li>
+              <li data-lang="en">Used Python, Excel and AI-assisted analysis for data auditing, segmentation and cross-validation, creating a reproducible workflow.</li>
+              <li data-lang="zh">使用Python、Excel及AI辅助分析完成数据审计、客户分群与交叉验证，建立可复核的分析流程。</li>
+              <li data-lang="en">Translated findings into customer activation recommendations covering one-to-one outreach, relationship recovery and personalised experiences.</li>
+              <li data-lang="zh">将分析结果转化为客户激活建议，重点覆盖一对一触达、客户关系恢复与个性化体验。</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item reveal">
+          <div class="exp-date"><span data-lang="en">Jun 2026</span><span data-lang="zh">2026.06</span></div>
+          <div class="exp-right">
+            <div class="exp-company"><span data-lang="en">BMW MINI Plant · Oxford, UK</span><span data-lang="zh">英国牛津BMW MINI工厂</span></div>
+            <div class="exp-role"><span data-lang="en">Advanced Manufacturing Industry Study Visit</span><span data-lang="zh">海外先进制造业参访</span></div>
+            <ul class="exp-bullets">
+              <li data-lang="en">Observed automated assembly, manual integration, body painting and production-line coordination, strengthening understanding of manufacturing operations and automotive supply chains.</li>
+              <li data-lang="zh">实地观察自动化机械臂装配、人工整车安装、车身喷涂及生产线协同，深化对先进制造企业生产组织与汽车产业链的理解。</li>
+            </ul>
+          </div>
+        </div>
 
         <div class="exp-item reveal">
           <div class="exp-date"><span data-lang="en">Jan–Feb 2023<br>&amp;<br>Jun–Jul 2023</span><span data-lang="zh">2023.01–02<br>&amp;<br>2023.06–07</span></div>
@@ -498,12 +742,13 @@
       <div class="section-body reveal">
         <div class="skills-grid">
           <div class="skill-group">
-            <div class="skill-group-title"><span data-lang="en">Machine Learning</span><span data-lang="zh">机器学习</span></div>
+            <div class="skill-group-title"><span data-lang="en">Machine Learning &amp; Analytics</span><span data-lang="zh">机器学习与数据分析</span></div>
             <div class="skill-tags">
               <span class="skill-tag">Random Forest</span>
               <span class="skill-tag">LSTM / RNN</span>
               <span class="skill-tag"><span data-lang="en">Time-series modelling</span><span data-lang="zh">时间序列建模</span></span>
               <span class="skill-tag"><span data-lang="en">Feature engineering</span><span data-lang="zh">特征工程</span></span>
+              <span class="skill-tag"><span data-lang="en">Customer segmentation</span><span data-lang="zh">客户分群</span></span>
             </div>
           </div>
           <div class="skill-group">
@@ -524,6 +769,7 @@
             <div class="skill-group-title"><span data-lang="en">Programming</span><span data-lang="zh">编程</span></div>
             <div class="skill-tags">
               <span class="skill-tag"><span data-lang="en">AI-assisted coding</span><span data-lang="zh">AI编程（Vibe Coding）</span></span>
+              <span class="skill-tag">Python</span>
               <span class="skill-tag">Stata</span>
               <span class="skill-tag">MATLAB</span>
               <span class="skill-tag">C++</span>
@@ -602,11 +848,17 @@
       body.classList.add(lang);
       ['enBtn', 'enBtnM'].forEach(id => {
         const el = document.getElementById(id);
-        if (el) el.classList.toggle('active', lang === 'en');
+        if (el) {
+          el.classList.toggle('active', lang === 'en');
+          el.setAttribute('aria-pressed', String(lang === 'en'));
+        }
       });
       ['zhBtn', 'zhBtnM'].forEach(id => {
         const el = document.getElementById(id);
-        if (el) el.classList.toggle('active', lang === 'zh');
+        if (el) {
+          el.classList.toggle('active', lang === 'zh');
+          el.setAttribute('aria-pressed', String(lang === 'zh'));
+        }
       });
       document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
       localStorage.setItem('siteLang', lang);
@@ -615,21 +867,16 @@
     const preferredLang = localStorage.getItem('siteLang') || (((navigator.language || '').toLowerCase().startsWith('zh')) ? 'zh' : 'en');
     setLang(preferredLang);
 
-    document.getElementById('langToggle').addEventListener('click', () => {
-      setLang(body.classList.contains('zh') ? 'en' : 'zh');
+    document.querySelectorAll('[data-set-lang]').forEach(button => {
+      button.addEventListener('click', () => setLang(button.dataset.setLang));
     });
-
-    const langToggleMobile = document.getElementById('langToggleMobile');
-    if (langToggleMobile) {
-      langToggleMobile.addEventListener('click', () => {
-        setLang(body.classList.contains('zh') ? 'en' : 'zh');
-      });
-    }
 
     if (hamburger) {
       hamburger.addEventListener('click', () => {
         mainNav.classList.toggle('open');
-        document.body.style.overflow = mainNav.classList.contains('open') ? 'hidden' : '';
+        const isOpen = mainNav.classList.contains('open');
+        hamburger.setAttribute('aria-expanded', String(isOpen));
+        document.body.style.overflow = isOpen ? 'hidden' : '';
       });
     }
 
@@ -640,6 +887,7 @@
         if (!target) return;
         e.preventDefault();
         mainNav.classList.remove('open');
+        if (hamburger) hamburger.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
         const navH = mainNav.offsetHeight;
         const top = target.getBoundingClientRect().top + window.scrollY - navH - 16;
@@ -661,6 +909,37 @@
     });
 
     document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    const updateNav = () => mainNav.classList.toggle('scrolled', window.scrollY > 24);
+    updateNav();
+    window.addEventListener('scroll', updateNav, { passive: true });
+
+    const finePointer = window.matchMedia('(pointer: fine)').matches;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (finePointer && !reducedMotion) {
+      const dot = document.querySelector('.cursor-dot');
+      const ring = document.querySelector('.cursor-ring');
+
+      document.documentElement.classList.add('custom-cursor');
+
+      window.addEventListener('pointermove', event => {
+        const position = `translate3d(${event.clientX}px, ${event.clientY}px, 0) translate(-50%, -50%)`;
+        dot.style.transform = position;
+        ring.style.transform = position;
+        dot.style.opacity = '1';
+        ring.style.opacity = '1';
+      }, { passive: true });
+
+      document.documentElement.addEventListener('mouseleave', () => {
+        dot.style.opacity = '0';
+        ring.style.opacity = '0';
+      });
+
+      document.querySelectorAll('a, button').forEach(element => {
+        element.addEventListener('pointerenter', () => body.classList.add('cursor-active'));
+        element.addEventListener('pointerleave', () => body.classList.remove('cursor-active'));
+      });
+    }
   </script>
 
 </body>
