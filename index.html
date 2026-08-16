@@ -264,6 +264,8 @@
     .work-meta span { font-size: 10.5px; color: var(--accent); background: var(--accent-soft); padding: .3rem .55rem; border-radius: 999px; }
     .work-link { margin-top: auto; padding-top: 1.2rem; color: var(--accent); font-size: 12px; font-weight: 500; text-decoration: none; }
     .work-link:hover { text-decoration: underline; }
+    .project-jump { display: inline-flex; width: fit-content; margin-top: auto; padding-top: 1.15rem; color: var(--accent); font-size: 12px; font-weight: 500; text-decoration: none; }
+    .project-jump:hover { text-decoration: underline; }
     .work-card-featured {
       grid-column: 1 / -1; min-height: 0; display: grid;
       grid-template-columns: minmax(0, 1.45fr) minmax(230px, .55fr);
@@ -279,6 +281,7 @@
     .work-card-featured .work-meta span { color: #b9e9e8; background: rgba(98,215,213,.10); border: 1px solid rgba(98,215,213,.17); }
     .work-card-featured .work-link { display: inline-flex; width: fit-content; margin-top: .9rem; padding: .65rem .9rem; color: #062d3b; background: #62d7d5; border-radius: 999px; text-decoration: none; }
     .work-card-featured .work-link:hover { background: #80e2e0; text-decoration: none; }
+    .work-card-featured .project-jump { margin-top: 1rem; padding-top: 0; color: #8ee7e5; }
     .product-tagline { margin: .75rem 0 0; color: #f0f7fa; font-size: 12px; font-weight: 500; }
     .featured-product-side { align-self: center; padding-left: 1.5rem; border-left: 1px solid rgba(255,255,255,.14); }
     .product-fact { margin-bottom: .8rem; }
@@ -325,13 +328,16 @@
     }
 
     /* RESEARCH */
-    .research-item { margin-bottom: .8rem; padding: 1.25rem 1.35rem; border: 1px solid var(--line); border-radius: 10px; background: rgba(249,252,254,.66); transition: background .2s ease, border-color .2s ease; }
+    .research-item { scroll-margin-top: 92px; margin-bottom: .8rem; padding: 1.35rem 1.45rem; border: 1px solid var(--line); border-radius: 10px; background: rgba(249,252,254,.66); transition: background .2s ease, border-color .2s ease, box-shadow .2s ease; }
     .research-item:hover { background: var(--surface); border-color: #9dbac5; }
+    .research-item:target { background: var(--surface); border-color: var(--accent); box-shadow: 0 12px 32px rgba(14,85,107,.12); }
     .research-item:last-child { margin-bottom: 0; }
     .research-title { font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
     .research-date { font-size: 12px; color: var(--faint); margin-bottom: 8px; }
     .research-desc { font-size: 13.5px; color: var(--muted); line-height: 1.7; }
     .research-desc strong { color: var(--ink); font-weight: 500; }
+    .research-link { display: inline-flex; margin-top: .75rem; color: var(--accent); font-size: 12px; font-weight: 500; text-decoration: none; }
+    .research-link:hover { text-decoration: underline; }
 
     /* SKILLS */
     .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
@@ -465,8 +471,9 @@
     <div class="nav-right">
       <ul class="nav-links">
         <li><a href="#about"><span data-lang="en">About</span><span data-lang="zh">关于</span></a></li>
-        <li><a href="#work"><span data-lang="en">Research &amp; Projects</span><span data-lang="zh">研究与项目</span></a></li>
+        <li><a href="#work"><span data-lang="en">Highlights</span><span data-lang="zh">代表项目</span></a></li>
         <li><a href="#experience"><span data-lang="en">Experience</span><span data-lang="zh">实习</span></a></li>
+        <li><a href="#research"><span data-lang="en">Research</span><span data-lang="zh">研究项目</span></a></li>
         <li><a href="#skills"><span data-lang="en">Skills</span><span data-lang="zh">技能</span></a></li>
       </ul>
       <div class="lang-toggle" aria-label="Language selector">
@@ -488,10 +495,10 @@
 
   <div class="nav-mobile-menu" id="mobileMenu">
     <a href="#about"><span data-lang="en">About</span><span data-lang="zh">关于</span></a>
-    <a href="#work"><span data-lang="en">Research &amp; Projects</span><span data-lang="zh">研究与项目</span></a>
+    <a href="#work"><span data-lang="en">Highlighted Projects</span><span data-lang="zh">重点代表项目</span></a>
     <a href="#education"><span data-lang="en">Education</span><span data-lang="zh">教育</span></a>
     <a href="#experience"><span data-lang="en">Experience</span><span data-lang="zh">实习</span></a>
-    <a href="#research"><span data-lang="en">Research</span><span data-lang="zh">研究</span></a>
+    <a href="#research"><span data-lang="en">Research &amp; Projects</span><span data-lang="zh">研究与项目</span></a>
     <a href="#skills"><span data-lang="en">Skills</span><span data-lang="zh">技能</span></a>
     <a href="#awards"><span data-lang="en">Awards</span><span data-lang="zh">获奖</span></a>
   </div>
@@ -513,7 +520,7 @@
           <span data-lang="zh">以物理学理解技术，以金融学评估价值，以数据分析支持判断——关注半导体、先进制造与科技投资研究。</span>
         </p>
         <div class="hero-actions">
-          <a class="button-link primary" href="#work"><span data-lang="en">Explore research &amp; projects</span><span data-lang="zh">查看研究与项目</span> <span aria-hidden="true">↓</span></a>
+          <a class="button-link primary" href="#work"><span data-lang="en">Explore highlighted projects</span><span data-lang="zh">查看重点代表项目</span> <span aria-hidden="true">↓</span></a>
           <a class="button-link secondary" href="mailto:peiji166@qq.com"><span data-lang="en">Get in touch</span><span data-lang="zh">联系我</span></a>
         </div>
         <div class="hero-contacts">
@@ -561,17 +568,18 @@
       </div>
     </section>
 
-    <!-- SELECTED WORK -->
+    <!-- HIGHLIGHTED PROJECTS -->
     <section id="work">
-      <div class="section-label"><span data-lang="en">Research &amp; Projects</span><span data-lang="zh">研究与项目</span></div>
+      <div class="section-label"><span data-lang="en">Highlighted Projects</span><span data-lang="zh">重点代表项目</span></div>
       <div class="section-body work-grid">
         <article class="work-card work-card-featured reveal">
           <div class="featured-product-copy">
             <div class="work-index">01 · Live Product · Suntree.uk</div>
             <h2 class="work-title"><span data-lang="en">Suntree — AI Interactive Fiction Platform</span><span data-lang="zh">Suntree — AI互动式小说平台</span></h2>
-            <p class="work-desc"><span data-lang="en">An AI-powered Chinese interactive-fiction platform. Players define their character identity and use guided choices or free-form input to change relationships, story paths and final endings.</span><span data-lang="zh">AI驱动的中文互动小说平台。玩家可以设定角色身份，通过选项或自由输入改变人物关系、剧情走向与最终结局。</span></p>
+            <p class="work-desc"><span data-lang="en">An AI-powered Chinese interactive-fiction platform where choices and free-form input alter relationships, story branches and endings.</span><span data-lang="zh">AI驱动的中文互动小说平台，玩家可通过选项或自由输入改变人物关系、剧情走向与最终结局。</span></p>
             <p class="product-tagline"><span data-lang="en">Enter a novel that responds to you, where every choice truly changes the story.</span><span data-lang="zh">进入一部会回应你的小说，让每一个选择真正改变故事。</span></p>
-            <div class="work-meta"><span>Next.js</span><span>Generative AI</span><span>Prompt Engineering</span><span>Interactive Narrative</span><span>State System</span></div>
+            <div class="work-meta"><span>Next.js</span><span>Generative AI</span><span>Interactive Narrative</span><span>State System</span></div>
+            <a class="project-jump" href="#project-suntree"><span data-lang="en">View full project ↓</span><span data-lang="zh">查看完整项目 ↓</span></a>
           </div>
           <div class="featured-product-side">
             <div class="product-fact"><span class="product-fact-label"><span data-lang="en">Status</span><span data-lang="zh">状态</span></span><span class="product-fact-value"><span data-lang="en">Live</span><span data-lang="zh">已上线</span></span></div>
@@ -580,54 +588,37 @@
             <a class="work-link" href="https://suntree.uk/" target="_blank" rel="noreferrer"><span data-lang="en">Try online ↗</span><span data-lang="zh">在线体验 ↗</span></a>
           </div>
         </article>
+
         <article class="work-card reveal">
-          <div class="work-index"><span data-lang="en">02 · Materials Research · Mar–Jun 2024</span><span data-lang="zh">02 · 材料研究 · 2024.03–06</span></div>
-          <h2 class="work-title"><span data-lang="en">Electronic Structure of In-doped GaAs: First-principles Analysis</span><span data-lang="zh">半导体材料电子结构研究：In掺杂GaAs第一性原理分析</span></h2>
-          <p class="work-desc"><span data-lang="en">Applied density functional theory in Materials Studio to model In-doped GaAs and compare how different doping configurations affect band structure, density of states and optical properties. The analysis found an approximately 40% reduction in band gap and a clear red shift in the optical absorption edge, helping explain the mechanism through which doping changes semiconductor optoelectronic performance.</span><span data-lang="zh">基于密度泛函理论（DFT），使用Materials Studio构建In掺杂GaAs晶胞模型，对比不同掺杂方式对能带结构、电子态密度及光学性质的影响。研究发现掺杂后材料禁带宽度下降约40%，光吸收边出现明显红移，揭示掺杂方式影响半导体材料光电性能的作用机制。</span></p>
-          <div class="work-meta"><span>DFT</span><span>GaAs</span><span>Materials Studio</span><span>Optoelectronics</span></div>
+          <div class="work-index"><span data-lang="en">02 · Semiconductor Materials</span><span data-lang="zh">02 · 半导体材料</span></div>
+          <h2 class="work-title"><span data-lang="en">In-doped GaAs First-principles Analysis</span><span data-lang="zh">In掺杂GaAs第一性原理分析</span></h2>
+          <p class="work-desc"><span data-lang="en">Applied DFT to compare doping configurations and identify an approximately 40% band-gap reduction with a red-shifted absorption edge.</span><span data-lang="zh">运用DFT比较不同掺杂方式，发现禁带宽度下降约40%，且光吸收边出现明显红移。</span></p>
+          <div class="work-meta"><span>DFT</span><span>GaAs</span><span>Materials Studio</span></div>
+          <a class="project-jump" href="#project-gaas"><span data-lang="en">View full research ↓</span><span data-lang="zh">查看详细研究 ↓</span></a>
         </article>
+
         <article class="work-card reveal">
-          <div class="work-index"><span data-lang="en">03 · Photovoltaics · Oct–Nov 2023</span><span data-lang="zh">03 · 光伏技术 · 2023.10–11</span></div>
-          <h2 class="work-title"><span data-lang="en">Thin-film Solar Materials and Photovoltaic Technology</span><span data-lang="zh">薄膜太阳能材料与光伏技术研究</span></h2>
-          <p class="work-desc"><span data-lang="en">Reviewed thin-film photovoltaic materials and fabrication technologies, focusing on ferrite and organic-inorganic hybrid perovskite films. Compared chemical-solution and vacuum-deposition routes in terms of cost, efficiency and stability, then synthesised literature evidence on conversion-efficiency gains, cost reduction and stability optimisation to understand the evolving technology routes of the photovoltaic industry.</span><span data-lang="zh">系统梳理薄膜太阳能电池材料与制备技术，重点研究铁酸盐及有机-无机杂化钙钛矿薄膜，并对比化学溶液法与真空沉积法在成本、效率和稳定性方面的技术特点。结合文献数据分析光伏转换效率提升、成本下降及稳定性优化趋势，加深对新能源材料与光伏产业技术路线的理解。</span></p>
-          <div class="work-meta"><span>Thin-film PV</span><span>Perovskite</span><span>Deposition</span><span>Technology Routes</span></div>
-        </article>
-        <article class="work-card reveal">
-          <div class="work-index"><span data-lang="en">04 · Display Technology · Mar–Jun 2024</span><span data-lang="zh">04 · 显示技术 · 2024.03–06</span></div>
-          <h2 class="work-title"><span data-lang="en">Luminescent Materials and OLED Device Mechanisms</span><span data-lang="zh">发光材料与OLED光电器件机理研究</span></h2>
-          <p class="work-desc"><span data-lang="en">Examined the physical principles of fluorescence, phosphorescence and thermally activated delayed fluorescence (TADF), comparing their applications and performance characteristics in OLED emissive-layer materials. Mapped the development path and technology trends of OLED luminescent materials and assessed the application prospects of emerging materials in displays and optoelectronic devices.</span><span data-lang="zh">围绕晶体发光机制研究荧光、磷光及热活化延迟荧光（TADF）的物理原理，比较不同发光机制在OLED发光层材料中的应用特点与性能差异。通过文献调研梳理OLED发光材料的发展路径和技术趋势，并总结新型发光材料在显示技术与光电器件领域的应用前景。</span></p>
-          <div class="work-meta"><span>OLED</span><span>TADF</span><span>Luminescent Materials</span><span>Display Technology</span></div>
-        </article>
-        <article class="work-card reveal">
-          <div class="work-index"><span data-lang="en">05 · Alternative Data · Sep 2022–Jan 2025</span><span data-lang="zh">05 · 另类数据 · 2022.09–2025.01</span></div>
-          <h2 class="work-title"><span data-lang="en">Remote-sensing Data for Commodities and Regional Economics</span><span data-lang="zh">遥感数据在大宗商品和区域经济中的应用研究</span></h2>
-          <p class="work-desc"><span data-lang="en">Built multi-source variables from night-time lights, rainfall, vegetation coverage and land-surface temperature to estimate economic activity, urbanisation, agricultural production and environmental change. Extended vegetation and weather data to agricultural-futures supply analysis, electricity-price and production variables to energy-intensive commodities such as silicon and aluminium, and spatial disaster data to insurance-risk and regional-economic assessment.</span><span data-lang="zh">利用夜间灯光、降雨、植被覆盖率和地表温度等遥感数据构建多源变量，估计经济活动、城镇化、农业生产及环境变化。进一步将植被与气象数据用于农产品期货供给侧分析，将电力价格与产量信息用于硅、铝等高耗能工业品预测，并结合灾害空间数据开展保险风险评估和区域经济分析。</span></p>
-          <div class="work-meta"><span>Remote Sensing</span><span>Alternative Data</span><span>Commodities</span><span>Risk Analysis</span></div>
-        </article>
-        <article class="work-card reveal">
-          <div class="work-index"><span data-lang="en">06 · Product &amp; Derivatives · Jun–Jul 2026</span><span data-lang="zh">06 · 产品与衍生品 · 2026.06–07</span></div>
+          <div class="work-index"><span data-lang="en">03 · Product &amp; Derivatives</span><span data-lang="zh">03 · 产品与衍生品</span></div>
           <h2 class="work-title"><span data-lang="en">Options Strategy Simulation and Learning Platform</span><span data-lang="zh">期权策略模拟与教育平台</span></h2>
-          <p class="work-desc"><span data-lang="en">As a principal contributor, led product design, core-page development and the implementation of major financial modules. The bilingual platform integrates market data, options-strategy analysis, payoff diagrams, scenario analysis, a Greeks laboratory, European-versus-American option-pricing comparisons and foundational learning content, combining derivatives knowledge with AI-assisted programming.</span><span data-lang="zh">作为主要负责人参与搭建期权交易模拟与教育平台，负责产品设计、核心页面搭建及主要金融功能模块实现。平台涵盖市场数据、期权策略分析、收益图、情景分析、Greeks参数实验室、欧式与美式期权定价对比及基础教学，将衍生品定价与AI辅助编程能力结合。</span></p>
+          <p class="work-desc"><span data-lang="en">Built an interactive bilingual platform integrating options strategies, payoff diagrams, scenario analysis, a Greeks laboratory and pricing comparisons.</span><span data-lang="zh">搭建双语交互平台，整合期权策略、收益图、情景分析、Greeks参数实验室及欧式与美式期权定价对比。</span></p>
           <div class="work-meta"><span>Options</span><span>Payoff Diagram</span><span>Greeks</span><span>AI-assisted Coding</span></div>
-          <a class="work-link" href="https://jasper-166.github.io/Options-trading/" target="_blank" rel="noreferrer"><span data-lang="en">Open live project ↗</span><span data-lang="zh">查看在线项目 ↗</span></a>
+          <a class="project-jump" href="#project-options"><span data-lang="en">View full project ↓</span><span data-lang="zh">查看完整项目 ↓</span></a>
         </article>
+
         <article class="work-card reveal">
-          <div class="work-index"><span data-lang="en">07 · Quantitative Research · Oct 2024–Jun 2025</span><span data-lang="zh">07 · 量化研究 · 2024.10–2025.06</span></div>
-          <h2 class="work-title"><span data-lang="en">International Gold Futures Price Forecasting</span><span data-lang="zh">国际黄金期货价格预测</span></h2>
-          <p class="work-desc"><span data-lang="en">Built 12 Random Forest and LSTM models to forecast gold-futures prices. Constructed a feature system spanning macroeconomic factors, market variables, global-news sentiment and remote-sensing data; completed million-scale data cleaning, feature engineering and model evaluation, with the best model achieving a test-set R² of 0.89.</span><span data-lang="zh">基于Random Forest与LSTM构建12个黄金期货价格预测模型，从宏观因子、市场因子、全球新闻情绪指标及遥感数据因子四个维度构建变量体系。完成百万级数据清洗、特征工程与模型评估，最佳模型测试集R²达到0.89。</span></p>
-          <div class="work-meta"><span>Random Forest</span><span>LSTM</span><span>Feature Engineering</span><span>R² 0.89</span></div>
+          <div class="work-index"><span data-lang="en">04 · Quantitative Research</span><span data-lang="zh">04 · 量化研究</span></div>
+          <h2 class="work-title"><span data-lang="en">International Gold Futures Forecasting</span><span data-lang="zh">国际黄金期货价格预测</span></h2>
+          <p class="work-desc"><span data-lang="en">Built 12 Random Forest and LSTM models using macro, market, news-sentiment and remote-sensing factors; best test-set R² reached 0.89.</span><span data-lang="zh">构建12个Random Forest与LSTM模型，整合宏观、市场、新闻情绪及遥感因子，测试集R²最高0.89。</span></p>
+          <div class="work-meta"><span>Random Forest</span><span>LSTM</span><span>R² 0.89</span></div>
+          <a class="project-jump" href="#project-gold"><span data-lang="en">View full research ↓</span><span data-lang="zh">查看详细研究 ↓</span></a>
         </article>
+
         <article class="work-card reveal">
-          <div class="work-index"><span data-lang="en">08 · ESG Research · Nov 2024–May 2025</span><span data-lang="zh">08 · ESG研究 · 2024.11–2025.05</span></div>
-          <h2 class="work-title"><span data-lang="en">Non-linear Relationship between A-share ESG Ratings and Macroeconomic Indicators</span><span data-lang="zh">A股上市公司ESG评级与宏观经济指标非线性关系研究</span></h2>
-          <p class="work-desc"><span data-lang="en">Used Random Forest and LSTM models to analyse the non-linear relationship between corporate ESG ratings and macroeconomic variables. Built and compared a multi-model framework, completing million-scale multi-source data cleaning, feature engineering and model evaluation; the best model achieved an R² of 0.94.</span><span data-lang="zh">使用Random Forest与LSTM分析企业ESG评级与宏观变量之间的非线性关系，构建多模型框架进行对比。完成多源百万级数据清洗、特征工程及模型评估，最佳模型R²达到0.94。</span></p>
-          <div class="work-meta"><span>ESG</span><span>Random Forest</span><span>LSTM</span><span>R² 0.94</span></div>
-        </article>
-        <article class="work-card reveal">
-          <div class="work-index"><span data-lang="en">09 · Equity Valuation · Oct–Dec 2025</span><span data-lang="zh">09 · 公司估值 · 2025.10–12</span></div>
-          <h2 class="work-title"><span data-lang="en">Associated British Foods (ABF): Financial Analysis and Investment Valuation</span><span data-lang="zh">Associated British Foods（ABF）财务分析与投资价值研究</span></h2>
-          <p class="work-desc"><span data-lang="en">Analysed annual reports to assess ABF's profitability, liquidity, capital structure and post-pandemic recovery, placing its growth potential and principal risks within the industry and macroeconomic context. Built DDM and RIM valuation models, used CAPM to estimate the cost of equity, developed a medium- to long-term financial forecast, and tested the sensitivity of valuation results to growth and discount-rate assumptions against the market price.</span><span data-lang="zh">基于年报分析ABF的盈利能力、流动性、资本结构及疫情后业绩修复路径，并结合行业环境与宏观因素评估增长潜力和主要风险。构建DDM与RIM估值模型，结合CAPM测算股权成本并建立中长期财务预测框架；通过敏感性分析检验增长率、折现率等关键参数对估值结果的影响，并结合市场价格判断估值水平与潜在投资机会。</span></p>
-          <div class="work-meta"><span>DDM</span><span>RIM</span><span>CAPM</span><span>Sensitivity Analysis</span></div>
+          <div class="work-index"><span data-lang="en">05 · Equity Valuation</span><span data-lang="zh">05 · 公司估值</span></div>
+          <h2 class="work-title"><span data-lang="en">Associated British Foods Investment Valuation</span><span data-lang="zh">Associated British Foods投资价值研究</span></h2>
+          <p class="work-desc"><span data-lang="en">Combined DDM and RIM valuation with CAPM, financial forecasts and sensitivity analysis to assess ABF against its market price.</span><span data-lang="zh">综合运用DDM、RIM与CAPM，结合财务预测和敏感性分析评估ABF估值水平与潜在投资机会。</span></p>
+          <div class="work-meta"><span>DDM</span><span>RIM</span><span>CAPM</span></div>
+          <a class="project-jump" href="#project-abf"><span data-lang="en">View full research ↓</span><span data-lang="zh">查看详细研究 ↓</span></a>
         </article>
       </div>
     </section>
@@ -728,58 +719,60 @@
       <div class="section-label"><span data-lang="en">Research &amp; Projects</span><span data-lang="zh">研究与项目</span></div>
       <div class="section-body">
 
-        <div class="research-item reveal">
-          <div class="research-title"><span data-lang="en">Uber Business Model &amp; Venture Capital Lifecycle Analysis</span><span data-lang="zh">Uber 商业模式与风险投资生命周期分析</span></div>
-          <div class="research-date"><span data-lang="en">Jan 2026 — Mar 2026</span><span data-lang="zh">2026.01 — 2026.03</span></div>
-          <div class="research-desc"><span data-lang="en">Mapped Uber’s financing path from seed stage to IPO, analysing changes in <strong>investor composition, capital deployment, and exit strategy</strong>. Examined how platform economics, network effects, and subsidy-led expansion shaped valuation growth, with case-based interpretation of major investors such as <strong>SoftBank</strong>.</span><span data-lang="zh">系统梳理 Uber 从种子轮至 IPO 阶段的融资路径，分析<strong>投资人结构、资本投入逻辑与退出机制</strong>的阶段性变化；结合平台商业模式、网络效应与补贴竞争策略，解释估值扩张逻辑，并对<strong>SoftBank</strong>等重要投资机构的进入与退出路径进行案例分析。</span></div>
+        <div class="research-item reveal" id="project-suntree">
+          <div class="research-title"><span data-lang="en">Suntree — AI Interactive Fiction Platform</span><span data-lang="zh">Suntree — AI互动式小说平台</span></div>
+          <div class="research-date"><span data-lang="en">Live product</span><span data-lang="zh">已上线产品</span></div>
+          <div class="research-desc"><span data-lang="en">Designed and developed an <strong>AI-powered Chinese interactive-fiction platform</strong> where users select a script, define identities and relationships, and advance the narrative through guided choices or free-form input. The system tracks affection, trust, risk and other states so that each decision changes character responses, story branches and endings. The product currently includes <strong>nine original scripts</strong>, account-based saves, free trials, membership plans and bespoke-script services; my work covers product design, full-stack development, AI narrative and character-state systems, and monetisation design.</span><span data-lang="zh">设计并开发<strong>AI驱动的中文互动小说平台</strong>。用户可选择剧本、设定身份与人物关系，并通过剧情选项或自由输入推动故事发展；系统持续追踪好感、信任和风险等状态，使每次选择影响角色反应、剧情分支和最终结局。目前已上线<strong>9个原创剧本</strong>，支持账号存档、免费试玩、会员方案与定制剧本服务；负责产品设计、全栈开发、AI剧本与角色数值机制以及商业化设计。</span></div>
+          <a class="research-link" href="https://suntree.uk/" target="_blank" rel="noreferrer"><span data-lang="en">Try Suntree online ↗</span><span data-lang="zh">在线体验Suntree ↗</span></a>
         </div>
 
-        <div class="research-item reveal">
-          <div class="research-title"><span data-lang="en">Associated British Foods Valuation Using DDM, RIM &amp; CAPM</span><span data-lang="zh">基于 DDM、RIM 与 CAPM 的 Associated British Foods 估值研究</span></div>
-          <div class="research-date"><span data-lang="en">Nov 2025 — Dec 2025</span><span data-lang="zh">2025.11 — 2025.12</span></div>
-          <div class="research-desc"><span data-lang="en">Built an integrated <strong>equity valuation framework</strong> for Associated British Foods using <strong>DDM, RIM, and CAPM</strong>. Developed medium-term financial forecasts, tested sensitivity to discount rates and growth assumptions, and compared model-implied value with market pricing to assess potential investment opportunity.</span><span data-lang="zh">针对 Associated British Foods 搭建<strong>股权估值分析框架</strong>，综合运用<strong>DDM、RIM 与 CAPM</strong>进行估值；构建中期财务预测并对折现率、增长率等关键参数进行敏感性分析，对比模型结果与市场价格，评估估值水平与潜在投资机会。</span></div>
-        </div>
-
-        <div class="research-item reveal">
-          <div class="research-title"><span data-lang="en">Comparative Financial Analysis: Yonghui Superstores vs Jiajiayue</span><span data-lang="zh">上市公司财务分析与投资价值比较：永辉超市 vs 家家悦</span></div>
-          <div class="research-date"><span data-lang="en">Sep 2023 — Nov 2023</span><span data-lang="zh">2023.09 — 2023.11</span></div>
-          <div class="research-desc"><span data-lang="en">Constructed a comparative framework based on <strong>profitability, operating efficiency, and capital structure</strong> to evaluate two listed retailers. Analysed indicators including <strong>ROE and ROA</strong>, then combined business-model and governance differences to judge long-term competitiveness and relative investment value.</span><span data-lang="zh">围绕<strong>盈利能力、运营效率与资本结构</strong>搭建两家零售上市公司的比较分析框架，测算并解读<strong>ROE、ROA</strong>等核心指标，并结合商业模式及公司治理差异，对长期竞争力与相对投资价值进行综合判断。</span></div>
-        </div>
-
-        <div class="research-item reveal">
-          <div class="research-title"><span data-lang="en">In-Doped GaAs Electronic Structure Study (First-Principles)</span><span data-lang="zh">In 掺杂 GaAs 半导体材料电子结构研究（第一性原理）</span></div>
+        <div class="research-item reveal" id="project-gaas">
+          <div class="research-title"><span data-lang="en">Electronic Structure of In-doped GaAs: First-principles Analysis</span><span data-lang="zh">半导体材料电子结构研究：In掺杂GaAs第一性原理分析</span></div>
           <div class="research-date"><span data-lang="en">Mar 2024 — Jun 2024</span><span data-lang="zh">2024.03 — 2024.06</span></div>
-          <div class="research-desc"><span data-lang="en">Used <strong>density functional theory (DFT)</strong> in Material Studio (CASTEP) to model In-doped GaAs crystal structures and compare body-centred versus face-centred doping schemes. Found that doping reduced the band gap by around <strong>40%</strong> and produced a clear red-shift in optical absorption, revealing the mechanism through which dopant position affects optoelectronic properties.</span><span data-lang="zh">基于 Material Studio（CASTEP 模块）采用<strong>密度泛函理论（DFT）</strong>构建 In 掺杂 GaAs 晶胞模型，对比体心与面心掺杂方式对能带结构、态密度及光学性质的影响。研究发现掺杂后禁带宽度下降约<strong>40%</strong>，光吸收边明显红移，揭示了掺杂位置影响材料光电性能的作用机制。</span></div>
+          <div class="research-desc"><span data-lang="en">Applied <strong>density functional theory (DFT)</strong> in Materials Studio to construct In-doped GaAs crystal-cell models and compare how different doping configurations affect band structure, density of states and optical properties. The results showed an approximately <strong>40% reduction in band gap</strong> and a clear red shift in the optical absorption edge, revealing how doping configuration changes semiconductor optoelectronic performance.</span><span data-lang="zh">基于<strong>密度泛函理论（DFT）</strong>，使用Materials Studio构建In掺杂GaAs晶胞模型，对比不同掺杂方式对能带结构、电子态密度及光学性质的影响。研究发现掺杂后材料<strong>禁带宽度下降约40%</strong>，光吸收边出现明显红移，揭示不同掺杂方式影响半导体材料光电性能的作用机制。</span></div>
         </div>
 
-        <div class="research-item reveal">
-          <div class="research-title"><span data-lang="en">International Gold Price Forecasting Using Machine Learning</span><span data-lang="zh">国际黄金期货价格预测</span></div>
-          <div class="research-date"><span data-lang="en">Oct 2024 — Jun 2025</span><span data-lang="zh">2024.10 — 2025.06</span></div>
-          <div class="research-desc"><span data-lang="en">Applied <strong>Random Forest and LSTM</strong> models to forecast international gold futures prices across 12 models, achieving test-set <strong>R² up to 0.89</strong>. Processed over 1 million data points including macroeconomic variables, market indicators, and satellite remote-sensing data.</span><span data-lang="zh">基于<strong>Random Forest与LSTM</strong>构建12个预测模型，测试集<strong>R²最高达0.89</strong>。整合宏观指标、市场数据及遥感数据，处理百万级数据集。</span></div>
+        <div class="research-item reveal" id="project-thin-film">
+          <div class="research-title"><span data-lang="en">Thin-film Solar Materials and Photovoltaic Technology</span><span data-lang="zh">薄膜太阳能材料与光伏技术研究</span></div>
+          <div class="research-date"><span data-lang="en">Oct 2023 — Nov 2023</span><span data-lang="zh">2023.10 — 2023.11</span></div>
+          <div class="research-desc"><span data-lang="en">Reviewed thin-film photovoltaic materials and fabrication technologies, focusing on <strong>ferrite and organic-inorganic hybrid perovskite films</strong>. Compared chemical-solution and vacuum-deposition routes across cost, efficiency and stability, then synthesised literature evidence on conversion-efficiency gains, cost reduction and stability optimisation to understand the evolving technology routes of the photovoltaic industry.</span><span data-lang="zh">系统梳理薄膜太阳能电池材料与制备技术，重点研究<strong>铁酸盐及有机-无机杂化钙钛矿薄膜</strong>的制备方法与性能差异，对比化学溶液法与真空沉积法在成本、效率和稳定性方面的技术特点。结合文献数据分析光伏转换效率提升、成本下降及稳定性优化趋势，加深对新能源材料与光伏产业技术路线的理解。</span></div>
         </div>
 
-        <div class="research-item reveal">
-          <div class="research-title"><span data-lang="en">ESG Ratings &amp; Macroeconomic Indicators — Nonlinear Relationship Modelling</span><span data-lang="zh">ESG评级与宏观经济指标非线性关系研究</span></div>
-          <div class="research-date"><span data-lang="en">Nov 2024 — May 2025</span><span data-lang="zh">2024.11 — 2025.05</span></div>
-          <div class="research-desc"><span data-lang="en">Analysed nonlinear interactions between A-share corporate <strong>ESG scores</strong> and macroeconomic factors using <strong>Random Forest and LSTM RNN</strong>, achieving <strong>R² up to 0.94</strong>. Managed multi-source datasets with millions of entries.</span><span data-lang="zh">使用<strong>Random Forest与LSTM RNN</strong>分析A股上市企业<strong>ESG评级与宏观变量</strong>之间的非线性关系，多模型对比框架下<strong>R²最高达0.94</strong>，完成多源百万级数据清洗与特征工程。</span></div>
+        <div class="research-item reveal" id="project-oled">
+          <div class="research-title"><span data-lang="en">Luminescent Materials and OLED Device Mechanisms</span><span data-lang="zh">发光材料与OLED光电器件机理研究</span></div>
+          <div class="research-date"><span data-lang="en">Mar 2024 — Jun 2024</span><span data-lang="zh">2024.03 — 2024.06</span></div>
+          <div class="research-desc"><span data-lang="en">Studied the physical principles of <strong>fluorescence, phosphorescence and thermally activated delayed fluorescence (TADF)</strong>, comparing their applications and performance characteristics in OLED emissive-layer materials. Mapped the development path and technology trends of OLED luminescent materials and assessed the application prospects of emerging materials in displays and optoelectronic devices.</span><span data-lang="zh">围绕晶体发光机制研究<strong>荧光、磷光及热活化延迟荧光（TADF）</strong>材料的物理原理，分析不同发光机制在OLED发光层材料中的应用特点与性能差异。通过文献调研梳理OLED发光材料的发展路径及技术趋势，总结新型发光材料在显示技术与光电器件领域的潜在应用前景。</span></div>
         </div>
 
-        <div class="research-item reveal">
-          <div class="research-title"><span data-lang="en">Satellite-Navigation Remote Sensing for Financial Applications</span><span data-lang="zh">遥感数据在金融市场中的应用研究</span></div>
+        <div class="research-item reveal" id="project-remote-sensing">
+          <div class="research-title"><span data-lang="en">Remote-sensing Data for Commodities and Regional Economics</span><span data-lang="zh">遥感数据在大宗商品和区域经济中的应用研究</span></div>
           <div class="research-date"><span data-lang="en">Sep 2022 — Jan 2025</span><span data-lang="zh">2022.09 — 2025.01</span></div>
-          <div class="research-desc"><span data-lang="en">Leveraged night-light, vegetation, and rainfall <strong>remote-sensing datasets</strong> to estimate population and urbanisation. Built predictive models for <strong>Si/Al metal prices and electricity pricing</strong>; explored insurance pricing applications.</span><span data-lang="zh">利用夜光、降雨、植被覆盖率等<strong>遥感数据</strong>估计城镇化与人口指标；构建模型预测<strong>硅、铝大宗商品价格</strong>及电力价格，探索遥感数据在保险定价中的应用。</span></div>
+          <div class="research-desc"><span data-lang="en">Built multi-source variables from <strong>night-time lights, rainfall, vegetation coverage and land-surface temperature</strong> to estimate economic activity, urbanisation, agricultural production and environmental change. Used vegetation and weather data to construct agricultural-futures supply variables; combined electricity prices and production data to analyse energy-intensive commodities such as silicon and aluminium; and applied spatial disaster data to insurance-risk and regional-economic assessment.</span><span data-lang="zh">利用<strong>夜间灯光、降雨、植被覆盖率和地表温度</strong>等遥感数据构建多源变量，估计经济活动、城镇化、农业生产及环境变化。进一步使用植被与气象数据构建农产品期货供给侧变量，将电力价格及产量信息用于硅、铝等高耗能工业品分析与预测，并结合灾害空间数据开展保险风险评估和区域经济分析。</span></div>
         </div>
 
-        <div class="research-item reveal">
-          <div class="research-title"><span data-lang="en">GNSS Multipath Signal Analysis</span><span data-lang="zh">GNSS多路径信号分析</span></div>
-          <div class="research-date"><span data-lang="en">Nov 2021 — Jun 2023</span><span data-lang="zh">2021.11 — 2023.06</span></div>
-          <div class="research-desc"><span data-lang="en">Studied GNSS signal multipath characteristics and their application in soil moisture detection using MATLAB — signal processing, 9th-order Lagrange interpolation, and least-squares fitting. Awarded <strong>Shandong University Student Research Training First Prize (2023)</strong>.</span><span data-lang="zh">研究GNSS信号多路径特性及其在土壤湿度检测中的应用，使用MATLAB进行信号处理、9阶拉格朗日插值及最小二乘建模。荣获<strong>山东大学大学生科研训练计划一等奖（2023）</strong>。</span></div>
+        <div class="research-item reveal" id="project-options">
+          <div class="research-title"><span data-lang="en">Options Strategy Simulation and Learning Platform</span><span data-lang="zh">期权策略模拟与教育平台</span></div>
+          <div class="research-date"><span data-lang="en">Jun 2026 — Jul 2026</span><span data-lang="zh">2026.06 — 2026.07</span></div>
+          <div class="research-desc"><span data-lang="en">As a principal contributor, led product design, core-page development and the implementation of major financial modules for an interactive bilingual platform. Integrated <strong>market data, options-strategy analysis, payoff diagrams, scenario analysis, a Greeks laboratory, European-versus-American option-pricing comparisons and foundational learning content</strong>, combining derivatives-pricing knowledge with AI-assisted programming.</span><span data-lang="zh">作为主要负责人参与搭建期权交易模拟与教育平台，负责产品设计、核心页面搭建及主要金融功能模块实现。平台涵盖<strong>市场数据展示、期权策略分析、收益图、情景分析、Greeks参数实验室、欧式与美式期权定价对比及期权基础教学</strong>，将衍生品定价与AI辅助编程能力结合。</span></div>
+          <a class="research-link" href="https://jasper-166.github.io/Options-trading/" target="_blank" rel="noreferrer"><span data-lang="en">Open live project ↗</span><span data-lang="zh">查看在线项目 ↗</span></a>
         </div>
 
-        <div class="research-item reveal">
-          <div class="research-title"><span data-lang="en">Web3 &amp; On-Chain Data Analytics</span><span data-lang="zh">Web3 / 区块链链上数据研究</span></div>
-          <div class="research-date"><span data-lang="en">2022 — Present</span><span data-lang="zh">2022 — 至今</span></div>
-          <div class="research-desc"><span data-lang="en">2+ years of blockchain and derivatives trading research. Proficient in <strong>Dune Analytics (SQL), Nansen, Glassnode, and CryptoQuant</strong> for DeFi capital flow analysis, whale tracking, and market sentiment. Authored research reports on Web3 projects and BNB market cap dynamics. Deployed 12 Nillion project nodes; conducted interactions across 10+ Web3 ecosystems.</span><span data-lang="zh">2年以上区块链及衍生品交易研究经验，熟练使用<strong>Dune Analytics、Nansen、Glassnode、CryptoQuant</strong>等工具分析DeFi资金流、巨鲸行为及市场情绪。独立撰写Web3项目与BNB市值分析研究报告，部署运营12个Nillion节点，参与10余个Web3生态交互并获得空投。</span></div>
+        <div class="research-item reveal" id="project-gold">
+          <div class="research-title"><span data-lang="en">International Gold Futures Price Forecasting</span><span data-lang="zh">国际黄金期货价格预测</span></div>
+          <div class="research-date"><span data-lang="en">Oct 2024 — Jun 2025</span><span data-lang="zh">2024.10 — 2025.06</span></div>
+          <div class="research-desc"><span data-lang="en">Built <strong>12 Random Forest and LSTM forecasting models</strong> for international gold-futures prices. Constructed a feature system spanning macroeconomic factors, market variables, global-news sentiment and remote-sensing data; completed million-scale data cleaning, feature engineering and model evaluation, with the best model achieving a test-set <strong>R² of 0.89</strong>.</span><span data-lang="zh">基于<strong>Random Forest与LSTM构建12个预测模型</strong>预测国际黄金期货价格，从宏观因子、市场因子、全球新闻情绪指标及遥感数据因子四个维度构建变量体系。完成百万级数据清洗、特征工程与模型评估，最佳模型测试集<strong>R²达到0.89</strong>。</span></div>
+        </div>
+
+        <div class="research-item reveal" id="project-esg">
+          <div class="research-title"><span data-lang="en">Non-linear Relationship between A-share ESG Ratings and Macroeconomic Indicators</span><span data-lang="zh">A股上市公司ESG评级与宏观经济指标非线性关系研究</span></div>
+          <div class="research-date"><span data-lang="en">Nov 2024 — May 2025</span><span data-lang="zh">2024.11 — 2025.05</span></div>
+          <div class="research-desc"><span data-lang="en">Used <strong>Random Forest and LSTM</strong> to analyse the non-linear relationship between corporate ESG ratings and macroeconomic variables. Built and compared a multi-model framework, completing million-scale multi-source data cleaning, feature engineering and model evaluation; the best model achieved an <strong>R² of 0.94</strong>.</span><span data-lang="zh">使用<strong>Random Forest与LSTM</strong>分析企业ESG评级与宏观变量之间的非线性关系，构建多模型框架进行对比。完成多源百万级数据清洗、特征工程及模型评估，最佳模型<strong>R²达到0.94</strong>。</span></div>
+        </div>
+
+        <div class="research-item reveal" id="project-abf">
+          <div class="research-title"><span data-lang="en">Associated British Foods (ABF): Financial Analysis and Investment Valuation</span><span data-lang="zh">Associated British Foods（ABF）财务分析与投资价值研究</span></div>
+          <div class="research-date"><span data-lang="en">Oct 2025 — Dec 2025</span><span data-lang="zh">2025.10 — 2025.12</span></div>
+          <div class="research-desc"><span data-lang="en">Analysed annual reports to assess <strong>profitability, liquidity, capital structure and post-pandemic recovery</strong>, placing ABF's growth potential and principal risks within the industry and macroeconomic context. Built <strong>DDM and RIM valuation models</strong>, used <strong>CAPM</strong> to estimate the cost of equity, developed a medium- to long-term financial forecast, and tested sensitivity to growth and discount-rate assumptions before comparing model-implied value with the market price.</span><span data-lang="zh">基于年报分析ABF的<strong>盈利能力、流动性、资本结构及疫情后业绩修复路径</strong>，并结合行业环境与宏观因素评估增长潜力和主要风险。构建<strong>DDM与RIM估值模型</strong>，结合<strong>CAPM</strong>测算股权成本并建立中长期财务预测框架；通过敏感性分析检验增长率、折现率等关键参数对估值结果的影响，并结合市场价格判断估值水平与潜在投资机会。</span></div>
         </div>
 
       </div>
