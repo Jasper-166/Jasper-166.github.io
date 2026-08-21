@@ -443,17 +443,18 @@
     .f1-replay-icon { font-size: 15px; line-height: 1; }
     .f1-track-wrap { min-width: 0; position: relative; }
     .f1-track-panel {
-      position: relative; min-height: 410px; overflow: visible;
+      position: relative; min-height: 410px; margin-top: 1.55rem; overflow: visible;
+      perspective: 920px; isolation: isolate;
     }
     .track-nameplate {
-      position: absolute; top: .45rem; left: 50%; z-index: 3;
-      display: flex; align-items: center; gap: .65rem; transform: translateX(-50%);
+      position: absolute; top: -1.28rem; right: .4rem; z-index: 3;
+      display: flex; align-items: center; gap: .65rem;
       padding: .42rem .72rem; border: 1px solid rgba(255,255,255,.45); border-radius: 999px;
       color: rgba(7,60,75,.78); background: rgba(249,252,254,.28);
       box-shadow: inset 0 1px 0 rgba(255,255,255,.58);
       backdrop-filter: blur(12px) saturate(125%);
       font: 500 10px/1 'Space Grotesk','Noto Sans SC',sans-serif; letter-spacing: .08em;
-      pointer-events: none;
+      pointer-events: none; transition: opacity .24s ease, transform .4s ease;
     }
     .track-nameplate-index { color: rgba(8,114,127,.48); font-variant-numeric: tabular-nums; }
     .track-cycle-button {
@@ -480,7 +481,36 @@
     }
     .track-cycle-button:active { transform: translateY(-50%) scale(.94); }
     .track-cycle-button:focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; }
-    #f1Track { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+    .f1-track-panel::after {
+      content: ''; position: absolute; left: 17%; right: 17%; bottom: 7%; z-index: -1; height: 14%;
+      border-radius: 50%; pointer-events: none; opacity: 0;
+      background: radial-gradient(ellipse, rgba(8,114,127,.15), rgba(8,114,127,0) 68%);
+      filter: blur(10px); transform: scaleX(.72);
+      transition: opacity .28s ease, transform .5s cubic-bezier(.22,1,.36,1);
+    }
+    .track-canvas-stage {
+      position: absolute; inset: 0; z-index: 1;
+      transform: none; transform-origin: 50% 52%;
+      transform-style: preserve-3d; backface-visibility: hidden;
+      transition: transform .52s cubic-bezier(.22,.78,.2,1), opacity .3s ease, filter .34s ease;
+    }
+    #f1Track { width: 100%; height: 100%; display: block; }
+    .f1-track-panel.track-switching::after { opacity: .42; transform: scaleX(1); }
+    .f1-track-panel.track-switching .track-nameplate { opacity: .62; transform: translateY(-2px); }
+    .f1-track-panel.track-switching .track-cycle-button { pointer-events: none; }
+    .f1-track-panel.track-switching .track-canvas-stage { will-change: transform, opacity, filter; }
+    .f1-track-panel.track-exit-next .track-canvas-stage {
+      opacity: 0; filter: blur(2px); transform: translate3d(-9%,0,-80px) rotateY(64deg) scale(.86);
+    }
+    .f1-track-panel.track-exit-prev .track-canvas-stage {
+      opacity: 0; filter: blur(2px); transform: translate3d(9%,0,-80px) rotateY(-64deg) scale(.86);
+    }
+    .f1-track-panel.track-enter-next .track-canvas-stage {
+      opacity: 0; filter: blur(2px); transform: translate3d(9%,0,-80px) rotateY(-64deg) scale(.86); transition: none;
+    }
+    .f1-track-panel.track-enter-prev .track-canvas-stage {
+      opacity: 0; filter: blur(2px); transform: translate3d(-9%,0,-80px) rotateY(64deg) scale(.86); transition: none;
+    }
 
     /* FOOTER */
     footer {
@@ -573,8 +603,8 @@
       .f1-outro { padding: 4.2rem 1.5rem; }
       .f1-shell { grid-template-columns: 1fr; gap: 1.5rem; }
       .f1-title, body.en .f1-title { width: max-content; max-width: 100%; font-size: clamp(25px, 7.8vw, 34px); }
-      .f1-track-panel { min-height: 285px; }
-      .track-nameplate { top: .1rem; padding: .38rem .62rem; font-size: 9px; }
+      .f1-track-panel { min-height: 285px; margin-top: 1.35rem; perspective: 760px; }
+      .track-nameplate { top: -1.08rem; right: .05rem; padding: .38rem .62rem; font-size: 9px; }
       .track-cycle-button { width: 38px; height: 50px; border-radius: 16px; }
       .track-cycle-prev { left: -.55rem; }
       .track-cycle-next { right: -.55rem; }
@@ -770,14 +800,14 @@
         <div class="edu-item reveal">
           <div class="edu-school"><span data-lang="en">University of Birmingham</span><span data-lang="zh">伯明翰大学</span></div>
           <div class="edu-degree"><span data-lang="en">MSc Investment</span><span data-lang="zh">理学硕士 · 投资学</span></div>
-          <div class="edu-date"><span data-lang="en">Sep 2025 — Expected Dec 2026 · QS 68</span><span data-lang="zh">2025.09 — 预计2026.12 · QS 68</span></div>
+          <div class="edu-date"><span data-lang="en">Sep 2025 — Expected Dec 2026 · QS 68 · UK</span><span data-lang="zh">2025.09 — 预计2026.12 · QS 68 · 英国</span></div>
           <div class="edu-courses"><span data-lang="en">Blockchain &amp; Financial Applications · Financial Econometrics · Portfolio Theory · Private Equity &amp; Venture Finance · Risk Management · Security Valuation</span><span data-lang="zh">区块链金融应用 · 金融计量经济学 · 投资组合理论 · 私募股权与风险投资 · 金融市场风险管理 · 证券估值与财务报表分析</span></div>
         </div>
         <div class="edu-item reveal">
           <div class="edu-school"><span data-lang="en">Shandong University</span><span data-lang="zh">山东大学</span></div>
           <div class="edu-degree"><span data-lang="en">BSc Physics (Major) · BEcon Finance (Minor)</span><span data-lang="zh">理学学士 · 物理学（主修） | 经济学学士 · 金融学（辅修）</span></div>
-          <div class="edu-date"><span data-lang="en">Sep 2021 — Jun 2025 · National 985 Project University</span><span data-lang="zh">2021.09 — 2025.06 · 全国985工程重点大学</span></div>
-          <div class="edu-courses"><span data-lang="en">Asset Pricing · Machine Learning · Advanced Mathematics · Monetary Finance · Financial Markets · C++ · Statistics</span><span data-lang="zh">资产定价 · 机器学习 · 高等数学 · 货币金融学 · 金融市场 · C++ · 统计学</span></div>
+          <div class="edu-date"><span data-lang="en">Sep 2021 — Jun 2025 · China Project 985 University</span><span data-lang="zh">2021.09 — 2025.06 · 中国985工程重点大学</span></div>
+          <div class="edu-courses"><span data-lang="en">Solid-State Physics · Semiconductor Physics · Physics of Semiconductor Devices · Optics · Modern Materials Characterisation · Materials Modelling &amp; Computation · Probability &amp; Mathematical Statistics · C++ · Investment · Asset Valuation · Financial Markets · Derivatives Strategies &amp; Pricing</span><span data-lang="zh">固体物理 · 半导体物理 · 半导体器件物理 · 光学 · 现代材料测试技术 · 材料模拟与计算 · 概率论与数理统计 · C++ · 金融投资学 · 资产评估 · 金融市场学 · 衍生工具策略与定价</span></div>
         </div>
       </div>
     </section>
@@ -1039,7 +1069,7 @@
         <div class="f1-track-panel">
           <div class="track-nameplate" aria-live="polite"><span class="track-nameplate-index" id="f1TrackIndex">01 / 02</span><span id="f1TrackNameEn" data-lang="en">Shanghai</span><span id="f1TrackNameZh" data-lang="zh">上海国际赛车场</span></div>
           <button class="track-cycle-button track-cycle-prev" type="button" data-track-cycle="-1" aria-label="Previous circuit / 上一条赛道"></button>
-          <canvas id="f1Track"></canvas>
+          <div class="track-canvas-stage"><canvas id="f1Track"></canvas></div>
           <button class="track-cycle-button track-cycle-next" type="button" data-track-cycle="1" aria-label="Next circuit / 下一条赛道"></button>
         </div>
         <button class="f1-replay" id="f1Replay" type="button"><span class="f1-replay-icon" aria-hidden="true">↻</span><span data-lang="en">Run again</span><span data-lang="zh">再跑一次</span></button>
@@ -1134,12 +1164,16 @@
     const trackCanvas = document.getElementById('f1Track');
     const trackReplay = document.getElementById('f1Replay');
     const trackSection = document.getElementById('f1-outro');
+    const trackPanel = document.querySelector('.f1-track-panel');
+    const trackStage = document.querySelector('.track-canvas-stage');
     const trackCycleButtons = Array.from(document.querySelectorAll('[data-track-cycle]'));
     const trackNameEn = document.getElementById('f1TrackNameEn');
     const trackNameZh = document.getElementById('f1TrackNameZh');
     const trackIndex = document.getElementById('f1TrackIndex');
-    if (trackCanvas && trackReplay && trackSection) {
+    if (trackCanvas && trackReplay && trackSection && trackPanel && trackStage) {
       const trackContext = trackCanvas.getContext('2d');
+      const trackBackdropCanvas = document.createElement('canvas');
+      const trackBackdropContext = trackBackdropCanvas.getContext('2d');
       // Centre-line geometry adapted from "Shanghai International Racing Circuit track map"
       // by Will Pittenger, CC BY-SA 3.0: https://commons.wikimedia.org/wiki/File:Shanghai_International_Racing_Circuit_track_map.svg
       // Rendered on canvas without the labels or sector graphics of the source.
@@ -1157,6 +1191,15 @@
       let celebrationParticles = [];
       let celebrationBursts = [];
       let celebrationStarted = 0;
+      let trackSwitching = false;
+      let trackSwitchTimer = 0;
+
+      // CSS 3D transforms change getBoundingClientRect(), but must never change
+      // the coordinate system used to build or redraw a circuit.
+      const getTrackLayoutSize = () => ({
+        width: Math.max(trackPanel.clientWidth, 1),
+        height: Math.max(trackPanel.clientHeight, 1)
+      });
 
       const sampleTrackPath = (pathData, finishReference) => {
         const tokens = pathData.match(/[a-zA-Z]|[-+]?(?:\d*\.\d+|\d+)(?:e[-+]?\d+)?/gi) || [];
@@ -1258,7 +1301,7 @@
       const trackOrder = ['shanghai', 'silverstone'];
       const trackLabels = {
         shanghai: { en: 'Shanghai', zh: '上海国际赛车场' },
-        silverstone: { en: 'Silverstone', zh: '银石赛道' }
+        silverstone: { en: 'Silverstone, UK', zh: '英国银石赛道' }
       };
 
       const buildTrack = (sourcePoints, width, height) => {
@@ -1323,21 +1366,21 @@
         };
       };
 
-      const strokeTrack = (points, width, colour) => {
+      const strokeTrack = (points, width, colour, context = trackContext) => {
         if (!points.length) return;
-        trackContext.beginPath();
-        trackContext.moveTo(points[0].x, points[0].y);
-        points.slice(1).forEach(point => trackContext.lineTo(point.x, point.y));
-        trackContext.closePath();
-        trackContext.lineWidth = width;
-        trackContext.strokeStyle = colour;
-        trackContext.lineJoin = 'round';
-        trackContext.lineCap = 'round';
-        trackContext.stroke();
+        context.beginPath();
+        context.moveTo(points[0].x, points[0].y);
+        points.slice(1).forEach(point => context.lineTo(point.x, point.y));
+        context.closePath();
+        context.lineWidth = width;
+        context.strokeStyle = colour;
+        context.lineJoin = 'round';
+        context.lineCap = 'round';
+        context.stroke();
       };
 
       const prepareCelebration = now => {
-        const rect = trackCanvas.getBoundingClientRect();
+        const rect = getTrackLayoutSize();
         const compact = rect.width < 520;
         const palette = ['#e36b4d', '#08727f', '#f1b64c', '#62d7d5', '#f9fcfe', '#e7cf87'];
         const burstFractions = [.03, .13, .23, .33, .43, .53, .63, .73, .83, .91, .97];
@@ -1364,7 +1407,7 @@
             delay,
             colour
           });
-          const particleCount = burstIndex >= burstFractions.length - 3 ? (compact ? 36 : 52) : (compact ? 26 : 36);
+          const particleCount = burstIndex >= burstFractions.length - 3 ? (compact ? 30 : 42) : (compact ? 22 : 30);
           for (let index = 0; index < particleCount; index += 1) {
             const angle = (Math.PI * 2 * index) / particleCount + (Math.random() - .5) * .16;
             const speed = 48 + Math.random() * 78 + (burstIndex >= burstFractions.length - 3 ? 12 : 0);
@@ -1393,7 +1436,7 @@
             const normalY = Math.cos(station.angle) * side;
             const originX = station.x + normalX * 13;
             const originY = station.y + normalY * 13;
-            const fountainCount = compact ? 9 : 14;
+            const fountainCount = compact ? 7 : 10;
             for (let index = 0; index < fountainCount; index += 1) {
               const direction = station.angle + side * Math.PI / 2 + (Math.random() - .5) * .42;
               const speed = 48 + Math.random() * 58;
@@ -1419,8 +1462,7 @@
 
       const drawCelebration = now => {
         if (!celebrationParticles.length || !celebrationStarted || !trackPoints.length) return false;
-        const rect = trackCanvas.getBoundingClientRect();
-        const compact = rect.width < 520;
+        const rect = getTrackLayoutSize();
         const elapsed = (now - celebrationStarted) / 1000;
         let active = false;
 
@@ -1472,6 +1514,9 @@
           };
         };
 
+        trackContext.save();
+        trackContext.globalCompositeOperation = 'lighter';
+        trackContext.lineCap = 'round';
         celebrationParticles.forEach(particle => {
           const age = elapsed - particle.delay;
           if (age < 0) {
@@ -1484,14 +1529,10 @@
           const position = particlePosition(particle, age);
           const previous = particlePosition(particle, Math.max(age - .055, 0));
           const twinkle = .58 + Math.sin(age * particle.twinkle) * .22;
-          trackContext.save();
           trackContext.globalAlpha = Math.max(fade * twinkle, 0);
           trackContext.strokeStyle = particle.colour;
           trackContext.fillStyle = particle.colour;
-          trackContext.shadowColor = particle.colour;
-          trackContext.shadowBlur = particle.kind === 'burst' ? (compact ? 4 : 7) : 3;
           trackContext.lineWidth = particle.size * Math.max(fade, .2);
-          trackContext.lineCap = 'round';
           trackContext.beginPath();
           trackContext.moveTo(previous.x, previous.y);
           trackContext.lineTo(position.x, position.y);
@@ -1500,8 +1541,8 @@
           trackContext.beginPath();
           trackContext.arc(position.x, position.y, particle.size * .7, 0, Math.PI * 2);
           trackContext.fill();
-          trackContext.restore();
         });
+        trackContext.restore();
         return active;
       };
 
@@ -1579,37 +1620,45 @@
         trackContext.restore();
       };
 
-      const drawTrack = (now = 0) => {
-        const rect = trackCanvas.getBoundingClientRect();
-        trackContext.clearRect(0, 0, rect.width, rect.height);
-        if (!trackPoints.length) return false;
+      const renderTrackBackdrop = (rect, ratio) => {
+        trackBackdropCanvas.width = Math.max(Math.round(rect.width * ratio), 1);
+        trackBackdropCanvas.height = Math.max(Math.round(rect.height * ratio), 1);
+        trackBackdropContext.setTransform(ratio, 0, 0, ratio, 0, 0);
+        trackBackdropContext.clearRect(0, 0, rect.width, rect.height);
         if (ghostTrackPoints.length) {
           const direction = activeTrack === 'shanghai' ? 1 : -1;
-          trackContext.save();
-          trackContext.translate(direction * 9, -6);
-          trackContext.globalAlpha = .13;
-          strokeTrack(ghostTrackPoints, 9, 'rgba(249,252,254,.18)');
-          strokeTrack(ghostTrackPoints, 2.2, 'rgba(8,114,127,.28)');
-          strokeTrack(ghostTrackPoints, .8, 'rgba(249,252,254,.42)');
-          trackContext.restore();
+          trackBackdropContext.save();
+          trackBackdropContext.translate(direction * 9, -6);
+          trackBackdropContext.globalAlpha = .13;
+          strokeTrack(ghostTrackPoints, 9, 'rgba(249,252,254,.18)', trackBackdropContext);
+          strokeTrack(ghostTrackPoints, 2.2, 'rgba(8,114,127,.28)', trackBackdropContext);
+          strokeTrack(ghostTrackPoints, .8, 'rgba(249,252,254,.42)', trackBackdropContext);
+          trackBackdropContext.restore();
         }
-        strokeTrack(trackPoints, 16, 'rgba(8,114,127,.07)');
-        strokeTrack(trackPoints, 5, 'rgba(27,57,74,.86)');
-        strokeTrack(trackPoints, 1.6, 'rgba(249,252,254,.9)');
+        strokeTrack(trackPoints, 16, 'rgba(8,114,127,.07)', trackBackdropContext);
+        strokeTrack(trackPoints, 5, 'rgba(27,57,74,.86)', trackBackdropContext);
+        strokeTrack(trackPoints, 1.6, 'rgba(249,252,254,.9)', trackBackdropContext);
 
         const finish = trackPoints[0];
         const finishNext = trackPoints[5];
         const finishAngle = Math.atan2(finishNext.y - finish.y, finishNext.x - finish.x) + Math.PI / 2;
-        trackContext.save();
-        trackContext.translate(finish.x, finish.y);
-        trackContext.rotate(finishAngle);
+        trackBackdropContext.save();
+        trackBackdropContext.translate(finish.x, finish.y);
+        trackBackdropContext.rotate(finishAngle);
         for (let row = 0; row < 2; row += 1) {
           for (let column = 0; column < 6; column += 1) {
-            trackContext.fillStyle = (row + column) % 2 ? '#dce8ed' : '#26343c';
-            trackContext.fillRect(column * 4 - 12, row * 4 - 4, 4, 4);
+            trackBackdropContext.fillStyle = (row + column) % 2 ? '#dce8ed' : '#26343c';
+            trackBackdropContext.fillRect(column * 4 - 12, row * 4 - 4, 4, 4);
           }
         }
-        trackContext.restore();
+        trackBackdropContext.restore();
+      };
+
+      const drawTrack = (now = 0) => {
+        const rect = getTrackLayoutSize();
+        trackContext.clearRect(0, 0, rect.width, rect.height);
+        if (!trackPoints.length) return false;
+        trackContext.drawImage(trackBackdropCanvas, 0, 0, trackBackdropCanvas.width, trackBackdropCanvas.height, 0, 0, rect.width, rect.height);
 
         const car = positionAtProgress(trackProgress);
         const angle = car.angle;
@@ -1625,8 +1674,8 @@
       };
 
       const resizeTrack = () => {
-        const rect = trackCanvas.getBoundingClientRect();
-        const ratio = Math.min(window.devicePixelRatio || 1, 2);
+        const rect = getTrackLayoutSize();
+        const ratio = Math.min(window.devicePixelRatio || 1, 1.5);
         trackCanvas.width = Math.max(Math.round(rect.width * ratio), 1);
         trackCanvas.height = Math.max(Math.round(rect.height * ratio), 1);
         trackContext.setTransform(ratio, 0, 0, ratio, 0, 0);
@@ -1634,6 +1683,7 @@
         trackPoints = buildTrack(trackSources[activeTrack], rect.width, rect.height);
         ghostTrackPoints = buildTrack(trackSources[inactiveTrack], rect.width, rect.height);
         trackTimeline = buildSpeedTimeline(trackPoints);
+        renderTrackBackdrop(rect, ratio);
         drawTrack(performance.now());
       };
 
@@ -1689,7 +1739,7 @@
         trackNameZh.textContent = trackLabels[activeTrack].zh;
         trackIndex.textContent = `${String(selectedIndex + 1).padStart(2, '0')} / ${String(trackOrder.length).padStart(2, '0')}`;
       };
-      const setActiveTrack = trackKey => {
+      const setActiveTrack = (trackKey, shouldReplay = true) => {
         if (!trackSources[trackKey] || trackKey === activeTrack) return;
         window.cancelAnimationFrame(trackAnimationFrame);
         celebrationParticles = [];
@@ -1699,14 +1749,49 @@
         trackProgress = 0;
         updateTrackNameplate();
         resizeTrack();
-        replayLap();
+        if (shouldReplay) replayLap();
+      };
+      const transitionToTrack = (trackKey, direction) => {
+        if (!trackSources[trackKey] || trackKey === activeTrack || trackSwitching) return;
+        if (reducedMotion) {
+          setActiveTrack(trackKey);
+          return;
+        }
+        trackSwitching = true;
+        const exitClass = direction > 0 ? 'track-exit-next' : 'track-exit-prev';
+        const enterClass = direction > 0 ? 'track-enter-next' : 'track-enter-prev';
+        window.clearTimeout(trackSwitchTimer);
+        trackPanel.classList.add('track-switching', exitClass);
+        trackSwitchTimer = window.setTimeout(() => {
+          trackPanel.classList.remove(exitClass);
+          trackPanel.classList.add(enterClass);
+          setActiveTrack(trackKey, false);
+          void trackPanel.offsetWidth;
+          window.requestAnimationFrame(() => {
+            trackPanel.classList.remove(enterClass);
+            trackSwitchTimer = window.setTimeout(() => {
+              trackPanel.classList.remove('track-switching');
+              trackStage.style.transform = 'none';
+              trackStage.style.opacity = '1';
+              trackStage.style.filter = 'none';
+              void trackStage.offsetWidth;
+              window.requestAnimationFrame(() => {
+                trackStage.style.removeProperty('transform');
+                trackStage.style.removeProperty('opacity');
+                trackStage.style.removeProperty('filter');
+                trackSwitching = false;
+                replayLap();
+              });
+            }, 540);
+          });
+        }, 300);
       };
       trackCycleButtons.forEach(button => {
         button.addEventListener('click', () => {
           const currentIndex = trackOrder.indexOf(activeTrack);
           const direction = Number(button.dataset.trackCycle);
           const nextIndex = (currentIndex + direction + trackOrder.length) % trackOrder.length;
-          setActiveTrack(trackOrder[nextIndex]);
+          transitionToTrack(trackOrder[nextIndex], direction);
         });
       });
       const trackObserver = new IntersectionObserver(entries => {
