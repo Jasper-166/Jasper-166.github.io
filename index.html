@@ -144,28 +144,33 @@
       padding: 8.5rem 3rem 5.5rem; position: relative; overflow: hidden;
       color: #f6fbff; border-bottom: 1px solid rgba(255,255,255,0.08);
       background:
-        radial-gradient(circle at 78% 20%, rgba(30,190,193,0.23), transparent 24rem),
-        linear-gradient(145deg, #061925 0%, #092c3f 58%, #0b3444 100%);
+        radial-gradient(circle at 76% 32%, rgba(31,183,190,.16), transparent 26rem),
+        radial-gradient(circle at 90% 78%, rgba(57,117,156,.12), transparent 30rem),
+        linear-gradient(140deg, #030b12 0%, #061925 46%, #092c3f 100%);
     }
     .hero::before {
       content: ''; position: absolute; inset: 0;
       background-image:
-        linear-gradient(rgba(142,220,222,0.07) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(142,220,222,0.07) 1px, transparent 1px);
-      background-size: 64px 64px;
-      mask-image: linear-gradient(to right, transparent 2%, black 45%, black 100%);
+        radial-gradient(circle at 8% 23%, rgba(255,255,255,.58) 0 1px, transparent 1.4px),
+        radial-gradient(circle at 18% 72%, rgba(142,220,222,.46) 0 1px, transparent 1.5px),
+        radial-gradient(circle at 38% 14%, rgba(255,255,255,.36) 0 1px, transparent 1.4px),
+        radial-gradient(circle at 54% 82%, rgba(255,255,255,.34) 0 1px, transparent 1.4px),
+        radial-gradient(circle at 69% 18%, rgba(142,220,222,.58) 0 1px, transparent 1.5px),
+        radial-gradient(circle at 82% 58%, rgba(255,255,255,.42) 0 1px, transparent 1.4px),
+        radial-gradient(circle at 94% 31%, rgba(227,107,77,.48) 0 1px, transparent 1.5px),
+        linear-gradient(112deg, transparent 0 58%, rgba(142,220,222,.045) 58.1%, transparent 58.35%);
       pointer-events: none;
     }
     .hero::after {
-      content: ''; position: absolute; width: 14rem; height: 14rem;
-      right: 7%; top: 18%; background: transparent;
-      border: 1px solid rgba(98,215,213,0.26); border-radius: 50%; pointer-events: none;
-      box-shadow: 0 0 0 3.5rem rgba(98,215,213,0.025), 0 0 0 7rem rgba(98,215,213,0.018);
+      content: ''; position: absolute; width: min(68vw, 60rem); height: min(68vw, 60rem);
+      right: min(-30vw, -18rem); bottom: min(-44vw, -30rem); border-radius: 50%; pointer-events: none;
+      border: 1px solid rgba(142,220,222,.14);
+      box-shadow: inset 0 42px 90px rgba(98,215,213,.035), 0 -30px 110px rgba(98,215,213,.035);
     }
     .hero-shell {
       width: min(1180px, 100%); display: grid;
-      grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
-      gap: clamp(3rem, 8vw, 8rem); align-items: center; position: relative; z-index: 1;
+      grid-template-columns: minmax(0, 1.08fr) minmax(340px, .92fr);
+      gap: clamp(3rem, 7vw, 7rem); align-items: center; position: relative; z-index: 1;
     }
     .hero-eyebrow {
       font-size: 13.5px; letter-spacing: 0.14em; text-transform: uppercase;
@@ -205,8 +210,48 @@
     }
     .hero-contacts a:hover { color: white; border-color: rgba(255,255,255,.55); }
     .hero-focus {
-      align-self: center; padding-left: 2.2rem;
-      border-left: 1px solid rgba(255,255,255,0.18);
+      align-self: center; position: relative; overflow: visible; padding: 0;
+    }
+    .mission-visual {
+      position: relative; height: 205px; margin: 0 0 .8rem; overflow: visible;
+    }
+    .mission-visual::before,
+    .mission-visual::after {
+      content: ''; position: absolute; left: 50%; top: 55%; transform: translate(-50%,-50%);
+      pointer-events: none;
+    }
+    .mission-visual::before {
+      width: 72%; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(142,220,222,.22), transparent);
+      box-shadow: 0 -58px 0 rgba(142,220,222,.055), 0 58px 0 rgba(142,220,222,.055);
+    }
+    .mission-visual::after {
+      width: 1px; height: 76%;
+      background: linear-gradient(180deg, transparent, rgba(142,220,222,.18), transparent);
+    }
+    .mission-orbit {
+      position: absolute; left: 50%; top: 55%; border: 1px solid rgba(142,220,222,.2);
+      border-radius: 50%; transform: translate(-50%,-50%); pointer-events: none;
+    }
+    .mission-orbit.orbit-one { width: 74%; height: 38%; transform: translate(-50%,-50%) rotate(-17deg); }
+    .mission-orbit.orbit-two { width: 55%; height: 70%; transform: translate(-50%,-50%) rotate(27deg); border-color: rgba(255,255,255,.13); }
+    .mission-orbit.orbit-three { width: 33%; height: 33%; border-color: rgba(227,107,77,.28); }
+    .mission-core {
+      position: absolute; left: 50%; top: 55%; width: 13px; height: 13px;
+      border-radius: 50%; transform: translate(-50%,-50%); z-index: 3;
+      background: #e9ffff; box-shadow: 0 0 0 7px rgba(98,215,213,.08), 0 0 32px rgba(98,215,213,.72);
+    }
+    .mission-core::after {
+      content: ''; position: absolute; inset: -16px; border: 1px solid rgba(98,215,213,.28); border-radius: 50%;
+      animation: missionPulse 3.8s ease-in-out infinite;
+    }
+    .mission-node { position: absolute; z-index: 3; width: 7px; height: 7px; border-radius: 50%; background: #62d7d5; box-shadow: 0 0 14px rgba(98,215,213,.75); }
+    .mission-node.node-one { left: 19%; top: 57%; }
+    .mission-node.node-two { right: 19%; top: 31%; background: var(--signal); box-shadow: 0 0 14px rgba(227,107,77,.65); }
+    .mission-node.node-three { right: 28%; bottom: 19%; }
+    @keyframes missionPulse {
+      0%, 100% { transform: scale(.8); opacity: .2; }
+      50% { transform: scale(1.18); opacity: .72; }
     }
     .hero-focus-label {
       font-size: 11px; color: #8fc3cf; letter-spacing: 0.16em;
@@ -362,6 +407,81 @@
     .award-name { font-size: 14px; color: var(--ink); }
     .award-year { font-size: 12px; color: var(--faint); flex-shrink: 0; margin-left: 1rem; }
 
+    /* F1 OUTRO — a quiet personal signature, integrated with the page */
+    .f1-outro {
+      display: block; position: relative; overflow: hidden; max-width: none;
+      padding: clamp(4.5rem, 8vw, 7rem) 3rem; border: 0;
+      color: var(--ink); background: transparent;
+    }
+    .f1-outro::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(circle at 76% 48%, rgba(8,114,127,.08), transparent 27rem);
+    }
+    .f1-shell {
+      width: min(1180px, 100%); margin: 0 auto; position: relative; z-index: 1;
+      display: grid; grid-template-columns: minmax(360px,.65fr) minmax(0,1.35fr);
+      gap: clamp(1.5rem, 4vw, 4rem); align-items: center;
+    }
+    .f1-title {
+      width: max-content; max-width: none; margin: 0;
+      font-family: 'Space Grotesk', 'Noto Serif SC', sans-serif;
+      font-size: clamp(32px, 4vw, 50px); font-weight: 500; line-height: 1.08; letter-spacing: -.035em;
+    }
+    body.en .f1-title { font-size: clamp(29px, 3.2vw, 38px); }
+    body.zh .f1-title { font-family: 'Noto Serif SC', serif; letter-spacing: .02em; line-height: 1.2; }
+    .f1-line { display: block; white-space: nowrap; }
+    .f1-replay {
+      display: flex; align-items: center; justify-content: center; gap: .45rem;
+      width: max-content; min-height: 39px; margin: .8rem auto 0; padding: .6rem 1rem;
+      border: 1px solid rgba(8,114,127,.28); border-radius: 999px;
+      color: var(--accent-deep); background: rgba(249,252,254,.5);
+      font: 500 11px/1 'Space Grotesk','Noto Sans SC',sans-serif;
+      letter-spacing: .07em; cursor: pointer;
+      transition: color .2s, border-color .2s, background .2s, transform .2s;
+    }
+    .f1-replay:hover { color: white; border-color: var(--accent); background: var(--accent); transform: translateY(-1px); }
+    .f1-replay-icon { font-size: 15px; line-height: 1; }
+    .f1-track-wrap { min-width: 0; position: relative; }
+    .f1-track-panel {
+      position: relative; min-height: 410px; overflow: visible;
+    }
+    .track-nameplate {
+      position: absolute; top: .45rem; left: 50%; z-index: 3;
+      display: flex; align-items: center; gap: .65rem; transform: translateX(-50%);
+      padding: .42rem .72rem; border: 1px solid rgba(255,255,255,.45); border-radius: 999px;
+      color: rgba(7,60,75,.78); background: rgba(249,252,254,.28);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.58);
+      backdrop-filter: blur(12px) saturate(125%);
+      font: 500 10px/1 'Space Grotesk','Noto Sans SC',sans-serif; letter-spacing: .08em;
+      pointer-events: none;
+    }
+    .track-nameplate-index { color: rgba(8,114,127,.48); font-variant-numeric: tabular-nums; }
+    .track-cycle-button {
+      position: absolute; top: 50%; z-index: 4;
+      display: grid; place-items: center; width: 43px; height: 58px; padding: 0;
+      border: 1px solid rgba(255,255,255,.62); border-radius: 18px;
+      color: rgba(7,60,75,.66);
+      background: linear-gradient(145deg, rgba(249,252,254,.46), rgba(207,230,235,.2));
+      box-shadow: 0 10px 28px rgba(17,54,76,.08), inset 0 1px 0 rgba(255,255,255,.7);
+      backdrop-filter: blur(15px) saturate(130%); cursor: pointer;
+      transform: translateY(-50%);
+      transition: color .24s, border-color .24s, background .24s, box-shadow .24s, transform .24s;
+    }
+    .track-cycle-button::before {
+      content: ''; width: 10px; height: 10px; border-top: 1.5px solid currentColor; border-right: 1.5px solid currentColor;
+    }
+    .track-cycle-prev { left: -.7rem; }
+    .track-cycle-prev::before { transform: rotate(-135deg); margin-left: 4px; }
+    .track-cycle-next { right: -.7rem; }
+    .track-cycle-next::before { transform: rotate(45deg); margin-right: 4px; }
+    .track-cycle-button:hover {
+      color: var(--accent-deep); border-color: rgba(8,114,127,.34);
+      background: rgba(249,252,254,.68); box-shadow: 0 13px 30px rgba(17,54,76,.13), inset 0 1px 0 rgba(255,255,255,.82);
+    }
+    .track-cycle-button:active { transform: translateY(-50%) scale(.94); }
+    .track-cycle-button:focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; }
+    #f1Track { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+
     /* FOOTER */
     footer {
       padding: 3rem; display: flex; justify-content: space-between;
@@ -412,12 +532,15 @@
     span[data-lang] { display: none; }
     body.en span[data-lang="en"] { display: inline; }
     body.zh span[data-lang="zh"] { display: inline; }
+    .f1-title span[data-lang] { display: none; }
+    body.en .f1-title span[data-lang="en"], body.zh .f1-title span[data-lang="zh"] { display: block; }
     li[data-lang] { display: none; }
     body.en li[data-lang="en"] { display: list-item; }
     body.zh li[data-lang="zh"] { display: list-item; }
 
     @media (prefers-reduced-motion: reduce) {
       .cursor-dot, .cursor-ring { display: none !important; }
+      .mission-core::after { animation: none; opacity: .45; }
       .reveal,
       .reveal.visible {
         opacity: 1;
@@ -437,8 +560,8 @@
         padding: 6.5rem 1.5rem 3.2rem;
       }
       .hero-shell { grid-template-columns: 1fr; gap: 2rem; }
-      .hero::before { background-size: 42px 42px; }
-      .hero-focus { padding: 1.2rem 0 0; border-left: 0; border-top: 1px solid rgba(255,255,255,0.18); }
+      .hero-focus { padding: 0; }
+      .mission-visual { height: 160px; }
       .work-grid { grid-template-columns: 1fr; }
       .work-card { min-height: 0; }
       .work-card-featured { grid-template-columns: 1fr; gap: 1.25rem; padding: 1.5rem; }
@@ -447,6 +570,14 @@
       section { grid-template-columns: 1fr; gap: 1.25rem; padding: 2.6rem 0; }
       .section-label { position: static; }
       .exp-item { grid-template-columns: 1fr; gap: 4px; }
+      .f1-outro { padding: 4.2rem 1.5rem; }
+      .f1-shell { grid-template-columns: 1fr; gap: 1.5rem; }
+      .f1-title, body.en .f1-title { width: max-content; max-width: 100%; font-size: clamp(25px, 7.8vw, 34px); }
+      .f1-track-panel { min-height: 285px; }
+      .track-nameplate { top: .1rem; padding: .38rem .62rem; font-size: 9px; }
+      .track-cycle-button { width: 38px; height: 50px; border-radius: 16px; }
+      .track-cycle-prev { left: -.55rem; }
+      .track-cycle-next { right: -.55rem; }
       footer { padding: 2rem 1.5rem; flex-direction: column; gap: 8px; text-align: center; }
     }
     @media (min-width: 701px) and (max-width: 980px) {
@@ -530,6 +661,15 @@
         </div>
       </div>
       <aside class="hero-focus" aria-label="Research approach">
+        <div class="mission-visual" aria-hidden="true">
+          <span class="mission-orbit orbit-one"></span>
+          <span class="mission-orbit orbit-two"></span>
+          <span class="mission-orbit orbit-three"></span>
+          <span class="mission-core"></span>
+          <span class="mission-node node-one"></span>
+          <span class="mission-node node-two"></span>
+          <span class="mission-node node-three"></span>
+        </div>
         <div class="hero-focus-label"><span data-lang="en">Research approach</span><span data-lang="zh">研究方法</span></div>
         <div class="focus-list">
           <div class="focus-item">
@@ -890,6 +1030,23 @@
 
   </main>
 
+  <section class="f1-outro" id="f1-outro" aria-labelledby="f1OutroTitle">
+    <div class="f1-shell">
+      <div class="f1-copy">
+        <h2 class="f1-title" id="f1OutroTitle"><span data-lang="en"><span class="f1-line">Driven by curiosity.</span><span class="f1-line">Grounded in evidence.</span></span><span data-lang="zh"><span class="f1-line">由好奇驱动，</span><span class="f1-line">以实证抵达。</span></span></h2>
+      </div>
+      <div class="f1-track-wrap">
+        <div class="f1-track-panel">
+          <div class="track-nameplate" aria-live="polite"><span class="track-nameplate-index" id="f1TrackIndex">01 / 02</span><span id="f1TrackNameEn" data-lang="en">Shanghai</span><span id="f1TrackNameZh" data-lang="zh">上海国际赛车场</span></div>
+          <button class="track-cycle-button track-cycle-prev" type="button" data-track-cycle="-1" aria-label="Previous circuit / 上一条赛道"></button>
+          <canvas id="f1Track"></canvas>
+          <button class="track-cycle-button track-cycle-next" type="button" data-track-cycle="1" aria-label="Next circuit / 下一条赛道"></button>
+        </div>
+        <button class="f1-replay" id="f1Replay" type="button"><span class="f1-replay-icon" aria-hidden="true">↻</span><span data-lang="en">Run again</span><span data-lang="zh">再跑一次</span></button>
+      </div>
+    </div>
+  </section>
+
   <footer>
     <span>© 2026 Jasper Wang · 王培吉</span>
     <span>Birmingham, UK · peiji166@qq.com</span>
@@ -973,6 +1130,596 @@
 
     const finePointer = window.matchMedia('(pointer: fine)').matches;
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const trackCanvas = document.getElementById('f1Track');
+    const trackReplay = document.getElementById('f1Replay');
+    const trackSection = document.getElementById('f1-outro');
+    const trackCycleButtons = Array.from(document.querySelectorAll('[data-track-cycle]'));
+    const trackNameEn = document.getElementById('f1TrackNameEn');
+    const trackNameZh = document.getElementById('f1TrackNameZh');
+    const trackIndex = document.getElementById('f1TrackIndex');
+    if (trackCanvas && trackReplay && trackSection) {
+      const trackContext = trackCanvas.getContext('2d');
+      // Centre-line geometry adapted from "Shanghai International Racing Circuit track map"
+      // by Will Pittenger, CC BY-SA 3.0: https://commons.wikimedia.org/wiki/File:Shanghai_International_Racing_Circuit_track_map.svg
+      // Rendered on canvas without the labels or sector graphics of the source.
+      const shanghaiPathData = `m -853.46939,684.61728 c 38.16139,-92.75986 75.45518,-186.8445 110.44898,-278.94642 4.37706,-11.52021 16.72891,-21.75786 27.61225,-27.29847 12.12686,-6.17367 26.56106,-8.56704 39.84948,-8.15816 13.90546,0.42785 29.88085,3.14734 41.73215,10.66836 9.9038,6.2851 18.91494,17.0757 23.84694,27.61225 4.27208,9.12672 5.8417,21.61849 3.7653,31.37755 -2.10728,9.90421 -8.86977,20.60372 -16.31632,27.61224 -6.77794,6.37923 -17.17826,10.48367 -25.10205,8.78571 -9.64764,-2.06735 -19.7519,-12.14329 -23.84693,-23.53316 -3.10178,-8.62723 -16.44578,-15.98154 -23.53317,-18.51275 -4.6269,-1.65247 -15.61631,2.93201 -19.76786,6.90306 -5.4709,5.23303 -10.70616,14.74792 -10.66836,21.96429 0.0435,8.30493 5.28309,19.56263 10.04082,26.98469 5.70146,8.89427 13.55208,18.89277 22.59184,24.78827 10.20513,6.65552 23.2857,12.78326 35.14285,11.60969 20.73207,-2.05197 45.17196,-6.14686 67.77551,-9.41327 49.774,-7.19277 99.49621,-14.30811 149.35714,-20.70918 12.05743,-1.54791 26.20746,-2.70592 37.96684,-1e-5 54.58925,12.56138 105.77827,26.14919 159.39796,41.41837 9.55378,2.72061 21.14246,5.26609 27.92602,11.29592 4.51236,4.01099 4.84068,12.67551 3.13775,17.57143 -1.64401,4.72653 -6.64162,7.72341 -12.55102,10.04082 -15.42733,6.04993 -31.44261,11.76983 -47.69387,15.06122 -16.79976,3.40248 -34.60026,3.30772 -51.77297,2.82398 -42.23545,-1.18973 -84.15896,-5.4448 -126.45152,-7.84438 -16.69723,-0.94736 -33.87182,-2.54529 -50.20408,0 -15.88202,2.47512 -31.88897,9.0391 -45.18368,17.25765 -9.7155,6.00594 -18.22268,15.13699 -23.84694,25.41581 -6.50839,11.89465 -10.97375,25.55559 -13.80612,38.90817 -3.02478,14.25966 -2.8164,29.9556 -0.31378,43.92857 2.51779,14.05764 8.09241,27.33202 15.37501,40.16326 10.28883,18.12794 23.70869,34.55705 33.88775,52.71429 5.30053,9.45501 11.17049,19.66986 12.55102,30.12245 1.54804,11.72088 0.99874,25.83419 -3.76531,36.39796 -4.8584,10.77297 -15.09865,20.68682 -25.10204,27.61224 -11.75171,8.1358 -26.1957,16.90631 -40.16326,17.57143 -21.1753,1.00835 -43.3895,-9.63424 -65.26531,-12.55102 -9.50174,-1.2669 -19.84449,-1.19238 -26.98469,2.82398 -6.24755,3.51425 -10.01906,11.73019 -9.41326,19.45408 1.06767,13.61285 7.54056,27.76501 12.55101,41.73215 4.23293,11.7997 6.7575,23.51168 13.80612,31.06377 4.66566,4.99888 13.64663,6.63688 21.33674,6.58928 18.28428,-0.1132 35.87658,-0.5568 54.28316,0.3138 105.43015,4.9865 212.42876,10.2764 317.54083,13.8061 7.00648,0.2352 13.01766,-4.6145 16.00254,-10.3546 2.45389,-4.719 -1.52466,-11.31348 -2.82398,-16.94387 -2.46599,-10.68594 -11.19448,-22.69356 -8.47194,-32.0051 4.26138,-14.57461 11.56882,-19.17883 21.65052,-21.02296 10.67759,-1.95313 24.52827,-2.26143 36.08418,0.62755 13.54613,3.38653 26.83884,9.79962 37.33928,18.51276 9.16282,7.60319 14.91638,15.56091 18.51276,26.98469 3.51587,11.16805 4.31516,24.52973 1.88265,36.08413 -2.5879,12.2925 -10.32153,24.067 -17.57142,34.5154 -6.9746,10.0516 -15.10627,19.6241 -25.41583,26.0433 -11.86391,7.387 -25.82223,13.4475 -39.84948,15.0613 -33.24826,3.825 -67.14632,1.419 -101.03572,1.2551 -312.10041,-1.5096 -624.17497,-0.1149 -935.6786,-5.0205 -7.2923,-0.1148 -13.9054,-3.1034 -16.0025,-7.5306 -1.6682,-3.5218 5.7168,-12.7733 10.6683,-15.375 19.7322,-10.3677 39.6036,-18.2435 62.1276,-21.6504 27.2617,-4.1237 52.9652,-2.0313 80.9541,-3.4516 46.2393,-2.3463 89.7781,-3.7843 135.551,-5.9617 6.6515,-0.3164 17.53961,-2.8771 20.39541,-9.0996 3.87956,-8.4531 5.45356,-18.4735 8.78572,-27.6122 38.92294,-106.74903 73.48249,-213.3727 116.72448,-318.48212 z`;
+      // Arena Grand Prix layout; source geometry is CC0/public domain.
+      // https://commons.wikimedia.org/wiki/File:Silverstone_race_circuit.svg
+      const silverstonePathData = `m -436.53753,-353.16714 387.898585,282.842709 c 36.643616,22.17737 49.49497636,64.7481104 48.48731636,119.198002 L -16.314069,121.60456 c -5.04775,39.73066 1.06362,72.0219 12.1218304,101.01525 L 123.087,372.12238 c 26.9577,30.56056 4.7592,58.55228 -26.263989,62.62947 l -66.67006,20.20305 c -21.6796596,11.62227 -24.0820396,25.42121 -8.08123,42.4264 46.46702,24.16349 92.934079,37.79229 139.401079,40.4061 32.8218,3.06648 44.8009,-9.49918 56.5685,-22.22335 L 630.1836,46.853271 C 665.3133,-5.7720206 660.3301,-74.158471 599.879,-70.324431 l -66.6701,-8.08122 C 476.5163,-81.883931 490.9647,-212.9141 573.615,-177.4006 l 131.3198,64.64977 c 25.2517,17.110159 52.7889,36.537339 74.7298,64.666569 14.779,18.94733 32.1632,46.9871704 36.387,86.856312 27.583,138.054179 29.7676,257.925619 42.4264,395.979799 3.77057,25.85948 4.18107,49.47885 -8.0812,64.64976 -8.4253,16.07642 -11.583,33.46975 -40.4061,44.44671 -35.8615,18.47711 -86.0874,33.3631 -143.4417,46.46702 l -88.8934,16.16244 -202.0305,10.10152 c -21.2659,2.79924 -42.2003,4.93533 -68.6904,18.18275 l -42.4264,26.26393 c -16.8179,7.4617 -34.4267,12.5507 -56.5685,4.0406 l -86.8731,-32.32484 c -27.201939,-3.0905 -52.176349,-2.83976 -68.690399,10.10154 l -36.36549,30.3046 c -45.80695,24.2704 -76.680846,18.6747 -101.015256,0 l -52.527925,-74.75132 c -11.95444,-17.56511 -21.08126,-36.07275 -48.48732,-48.48732 -183.39057,-98.08055 -361.3872,-195.47475 -539.42147,-282.84272 -36.36549,-24.91709 -78.79189,-53.8748 -115.15739,-78.7919 -36.46932,-24.35666 -74.26634,-96.345289 -2.0203,-157.583791 l 58.58884,-28.2842696 58.58885,-34.3451904 165.66502,-149.502579 c 10.27397,-8.55099 20.10167,-17.28049 4.04061,-36.36549 l -22.22336,-22.22335 c -5.94892,-14.81557 -17.64494,-29.63115 2.0203,-44.44672 29.54858,-21.12416 64.54714,-58.22329 98.99495,-64.64976 z`;
+      let trackPoints = [];
+      let ghostTrackPoints = [];
+      let trackTimeline = [];
+      let trackProgress = reducedMotion ? 1 : 0;
+      let trackAnimationFrame = 0;
+      let trackPlayed = false;
+      let activeTrack = 'shanghai';
+      let celebrationParticles = [];
+      let celebrationBursts = [];
+      let celebrationStarted = 0;
+
+      const sampleTrackPath = (pathData, finishReference) => {
+        const tokens = pathData.match(/[a-zA-Z]|[-+]?(?:\d*\.\d+|\d+)(?:e[-+]?\d+)?/gi) || [];
+        const isCommand = token => /^[a-zA-Z]$/.test(token);
+        const points = [];
+        let cursor = 0;
+        let command = '';
+        let current = { x: 0, y: 0 };
+        let startPoint = { x: 0, y: 0 };
+        const read = () => Number(tokens[cursor++]);
+
+        while (cursor < tokens.length) {
+          if (isCommand(tokens[cursor])) {
+            command = tokens[cursor++];
+            if (command.toLowerCase() === 'z') {
+              if (points.length) points.push({ ...startPoint });
+              current = { ...startPoint };
+              command = '';
+              continue;
+            }
+          }
+          if (!command || cursor >= tokens.length || isCommand(tokens[cursor])) continue;
+          const lowerCommand = command.toLowerCase();
+          const relative = command === lowerCommand;
+
+          if (lowerCommand === 'm' && cursor + 1 < tokens.length) {
+            let x = read();
+            let y = read();
+            if (relative) {
+              x += current.x;
+              y += current.y;
+            }
+            current = { x, y };
+            startPoint = { ...current };
+            points.push({ ...current });
+            command = relative ? 'l' : 'L';
+          } else if (lowerCommand === 'l' && cursor + 1 < tokens.length) {
+            let x = read();
+            let y = read();
+            if (relative) {
+              x += current.x;
+              y += current.y;
+            }
+            current = { x, y };
+            points.push({ ...current });
+          } else if (lowerCommand === 'c' && cursor + 5 < tokens.length) {
+            const values = [read(), read(), read(), read(), read(), read()];
+            const start = { ...current };
+            const controlOne = relative
+              ? { x: current.x + values[0], y: current.y + values[1] }
+              : { x: values[0], y: values[1] };
+            const controlTwo = relative
+              ? { x: current.x + values[2], y: current.y + values[3] }
+              : { x: values[2], y: values[3] };
+            const end = relative
+              ? { x: current.x + values[4], y: current.y + values[5] }
+              : { x: values[4], y: values[5] };
+            for (let step = 1; step <= 14; step += 1) {
+              const t = step / 14;
+              const inverse = 1 - t;
+              points.push({
+                x: inverse ** 3 * start.x + 3 * inverse ** 2 * t * controlOne.x + 3 * inverse * t ** 2 * controlTwo.x + t ** 3 * end.x,
+                y: inverse ** 3 * start.y + 3 * inverse ** 2 * t * controlOne.y + 3 * inverse * t ** 2 * controlTwo.y + t ** 3 * end.y
+              });
+            }
+            current = end;
+          } else {
+            cursor += 1;
+          }
+        }
+
+        let finishIndex = 0;
+        let finishDistance = Infinity;
+        points.forEach((point, index) => {
+          const distance = (point.x - finishReference.x) ** 2 + (point.y - finishReference.y) ** 2;
+          if (distance < finishDistance) {
+            finishDistance = distance;
+            finishIndex = index;
+          }
+        });
+        const rotated = points.slice(finishIndex).concat(points.slice(0, finishIndex)).filter((point, index, list) => {
+          if (index === 0) return true;
+          const previous = list[index - 1];
+          return Math.hypot(point.x - previous.x, point.y - previous.y) > .001;
+        });
+        const finalPoint = rotated[rotated.length - 1];
+        if (Math.hypot(finalPoint.x - rotated[0].x, finalPoint.y - rotated[0].y) < .001) rotated.pop();
+        rotated.push({ ...rotated[0] });
+        return rotated;
+      };
+
+      const trackSources = {
+        shanghai: sampleTrackPath(shanghaiPathData, { x: -895, y: 936 }),
+        // The source drawing places northern Copse low in the frame. Flip Y so the
+        // portfolio map follows the geographic convention: north at top, south at bottom.
+        silverstone: sampleTrackPath(silverstonePathData, { x: -436.53753, y: -353.16714 })
+          .map(point => ({ x: point.x, y: -point.y }))
+      };
+      const trackOrder = ['shanghai', 'silverstone'];
+      const trackLabels = {
+        shanghai: { en: 'Shanghai', zh: '上海国际赛车场' },
+        silverstone: { en: 'Silverstone', zh: '银石赛道' }
+      };
+
+      const buildTrack = (sourcePoints, width, height) => {
+        const insetX = Math.max(width * .045, 18);
+        const insetY = Math.max(height * .04, 12);
+        const minX = Math.min(...sourcePoints.map(point => point.x));
+        const maxX = Math.max(...sourcePoints.map(point => point.x));
+        const minY = Math.min(...sourcePoints.map(point => point.y));
+        const maxY = Math.max(...sourcePoints.map(point => point.y));
+        const sourceWidth = maxX - minX;
+        const sourceHeight = maxY - minY;
+        const scale = Math.min((width - insetX * 2) / sourceWidth, (height - insetY * 2) / sourceHeight);
+        const offsetX = (width - sourceWidth * scale) / 2;
+        const offsetY = (height - sourceHeight * scale) / 2;
+        return sourcePoints.map(point => ({
+          x: offsetX + (point.x - minX) * scale,
+          y: offsetY + (point.y - minY) * scale
+        }));
+      };
+
+      const buildSpeedTimeline = points => {
+        const uniqueCount = points.length - 1;
+        const lookAhead = 16;
+        const cumulative = [0];
+        let elapsed = 0;
+        for (let i = 0; i < uniqueCount; i += 1) {
+          const previous = points[(i - lookAhead + uniqueCount) % uniqueCount];
+          const current = points[i];
+          const ahead = points[(i + lookAhead) % uniqueCount];
+          const incoming = Math.atan2(current.y - previous.y, current.x - previous.x);
+          const outgoing = Math.atan2(ahead.y - current.y, ahead.x - current.x);
+          const turn = Math.abs(Math.atan2(Math.sin(outgoing - incoming), Math.cos(outgoing - incoming)));
+          const cornerLoad = Math.min(turn / 1.05, 1);
+          const speed = 1.18 - cornerLoad * .9;
+          const next = points[i + 1];
+          const distance = Math.hypot(next.x - current.x, next.y - current.y);
+          elapsed += distance / speed;
+          cumulative.push(elapsed);
+        }
+        return cumulative.map(value => value / elapsed);
+      };
+
+      const positionAtProgress = progress => {
+        let low = 1;
+        let high = trackTimeline.length - 1;
+        while (low < high) {
+          const middle = Math.floor((low + high) / 2);
+          if (trackTimeline[middle] < progress) low = middle + 1;
+          else high = middle;
+        }
+        const endIndex = Math.min(low, trackPoints.length - 1);
+        const startIndex = Math.max(endIndex - 1, 0);
+        const startTime = trackTimeline[startIndex];
+        const endTime = trackTimeline[endIndex];
+        const mix = endTime > startTime ? (progress - startTime) / (endTime - startTime) : 0;
+        const start = trackPoints[startIndex];
+        const end = trackPoints[endIndex];
+        return {
+          x: start.x + (end.x - start.x) * mix,
+          y: start.y + (end.y - start.y) * mix,
+          angle: Math.atan2(end.y - start.y, end.x - start.x)
+        };
+      };
+
+      const strokeTrack = (points, width, colour) => {
+        if (!points.length) return;
+        trackContext.beginPath();
+        trackContext.moveTo(points[0].x, points[0].y);
+        points.slice(1).forEach(point => trackContext.lineTo(point.x, point.y));
+        trackContext.closePath();
+        trackContext.lineWidth = width;
+        trackContext.strokeStyle = colour;
+        trackContext.lineJoin = 'round';
+        trackContext.lineCap = 'round';
+        trackContext.stroke();
+      };
+
+      const prepareCelebration = now => {
+        const rect = trackCanvas.getBoundingClientRect();
+        const compact = rect.width < 520;
+        const palette = ['#e36b4d', '#08727f', '#f1b64c', '#62d7d5', '#f9fcfe', '#e7cf87'];
+        const burstFractions = [.03, .13, .23, .33, .43, .53, .63, .73, .83, .91, .97];
+        const burstDelays = [.32, .56, .8, 1.04, 1.3, 1.56, 1.82, 2.06, 2.3, 2.48, 2.62];
+        celebrationParticles = [];
+        celebrationBursts = [];
+
+        burstFractions.forEach((fraction, burstIndex) => {
+          const pointIndex = Math.min(Math.floor((trackPoints.length - 2) * fraction), trackPoints.length - 2);
+          const point = trackPoints[pointIndex];
+          const centreX = rect.width / 2;
+          const centreY = rect.height / 2;
+          const offsetX = point.x - centreX;
+          const offsetY = point.y - centreY;
+          const offsetLength = Math.max(Math.hypot(offsetX, offsetY), 1);
+          const lift = 15 + (burstIndex % 3) * 7;
+          const originX = point.x + offsetX / offsetLength * lift;
+          const originY = point.y + offsetY / offsetLength * lift - 12;
+          const delay = burstDelays[burstIndex];
+          const colour = palette[burstIndex % palette.length];
+          celebrationBursts.push({
+            originX: originX / rect.width,
+            originY: originY / rect.height,
+            delay,
+            colour
+          });
+          const particleCount = burstIndex >= burstFractions.length - 3 ? (compact ? 36 : 52) : (compact ? 26 : 36);
+          for (let index = 0; index < particleCount; index += 1) {
+            const angle = (Math.PI * 2 * index) / particleCount + (Math.random() - .5) * .16;
+            const speed = 48 + Math.random() * 78 + (burstIndex >= burstFractions.length - 3 ? 12 : 0);
+            celebrationParticles.push({
+              kind: 'burst',
+              originX: originX / rect.width,
+              originY: originY / rect.height,
+              delay,
+              velocityX: Math.cos(angle) * speed,
+              velocityY: Math.sin(angle) * speed,
+              gravity: 34 + Math.random() * 18,
+              drag: .52 + Math.random() * .28,
+              life: 1.55 + Math.random() * .85,
+              size: .8 + Math.random() * 1.5,
+              twinkle: 8 + Math.random() * 12,
+              colour: palette[(index + burstIndex) % palette.length]
+            });
+          }
+        });
+
+        const straightStations = [.004, .012, .02, .028, .036, .044];
+        straightStations.forEach((progress, stationIndex) => {
+          const station = positionAtProgress(progress);
+          [-1, 1].forEach(side => {
+            const normalX = -Math.sin(station.angle) * side;
+            const normalY = Math.cos(station.angle) * side;
+            const originX = station.x + normalX * 13;
+            const originY = station.y + normalY * 13;
+            const fountainCount = compact ? 9 : 14;
+            for (let index = 0; index < fountainCount; index += 1) {
+              const direction = station.angle + side * Math.PI / 2 + (Math.random() - .5) * .42;
+              const speed = 48 + Math.random() * 58;
+              celebrationParticles.push({
+                kind: 'fountain',
+                originX: originX / rect.width,
+                originY: originY / rect.height,
+                delay: stationIndex * .11 + index * .018,
+                velocityX: Math.cos(direction) * speed,
+                velocityY: Math.sin(direction) * speed,
+                gravity: 18 + Math.random() * 16,
+                drag: .2 + Math.random() * .18,
+                life: .9 + Math.random() * .55,
+                size: .7 + Math.random() * 1.1,
+                twinkle: 12 + Math.random() * 10,
+                colour: index % 4 === 0 ? '#f9fcfe' : '#f1b64c'
+              });
+            }
+          });
+        });
+        celebrationStarted = now;
+      };
+
+      const drawCelebration = now => {
+        if (!celebrationParticles.length || !celebrationStarted || !trackPoints.length) return false;
+        const rect = trackCanvas.getBoundingClientRect();
+        const compact = rect.width < 520;
+        const elapsed = (now - celebrationStarted) / 1000;
+        let active = false;
+
+        celebrationBursts.forEach(burst => {
+          const originX = burst.originX * rect.width;
+          const originY = burst.originY * rect.height;
+          const launchAge = elapsed - (burst.delay - .3);
+          if (launchAge >= 0 && launchAge < .3) {
+            active = true;
+            const launchProgress = launchAge / .3;
+            trackContext.save();
+            trackContext.globalAlpha = Math.sin(launchProgress * Math.PI) * .9;
+            trackContext.strokeStyle = burst.colour;
+            trackContext.shadowColor = burst.colour;
+            trackContext.shadowBlur = 8;
+            trackContext.lineWidth = 1.5;
+            trackContext.beginPath();
+            trackContext.moveTo(originX, originY + 34 * (1 - launchProgress));
+            trackContext.lineTo(originX, originY + 4);
+            trackContext.stroke();
+            trackContext.restore();
+          }
+          const burstAge = elapsed - burst.delay;
+          if (burstAge >= 0 && burstAge < .72) {
+            active = true;
+            const fade = 1 - burstAge / .72;
+            trackContext.save();
+            trackContext.globalAlpha = fade;
+            trackContext.strokeStyle = burst.colour;
+            trackContext.shadowColor = burst.colour;
+            trackContext.shadowBlur = 10;
+            trackContext.lineWidth = 1.25;
+            trackContext.beginPath();
+            trackContext.arc(originX, originY, 5 + burstAge * 40, 0, Math.PI * 2);
+            trackContext.stroke();
+            trackContext.fillStyle = '#ffffff';
+            trackContext.beginPath();
+            trackContext.arc(originX, originY, Math.max(2.8 - burstAge * 5, 0), 0, Math.PI * 2);
+            trackContext.fill();
+            trackContext.restore();
+          }
+        });
+
+        const particlePosition = (particle, age) => {
+          const travel = (1 - Math.exp(-particle.drag * age)) / particle.drag;
+          return {
+            x: particle.originX * rect.width + particle.velocityX * travel,
+            y: particle.originY * rect.height + particle.velocityY * travel + .5 * particle.gravity * age * age
+          };
+        };
+
+        celebrationParticles.forEach(particle => {
+          const age = elapsed - particle.delay;
+          if (age < 0) {
+            active = true;
+            return;
+          }
+          if (age >= particle.life) return;
+          active = true;
+          const fade = 1 - age / particle.life;
+          const position = particlePosition(particle, age);
+          const previous = particlePosition(particle, Math.max(age - .055, 0));
+          const twinkle = .58 + Math.sin(age * particle.twinkle) * .22;
+          trackContext.save();
+          trackContext.globalAlpha = Math.max(fade * twinkle, 0);
+          trackContext.strokeStyle = particle.colour;
+          trackContext.fillStyle = particle.colour;
+          trackContext.shadowColor = particle.colour;
+          trackContext.shadowBlur = particle.kind === 'burst' ? (compact ? 4 : 7) : 3;
+          trackContext.lineWidth = particle.size * Math.max(fade, .2);
+          trackContext.lineCap = 'round';
+          trackContext.beginPath();
+          trackContext.moveTo(previous.x, previous.y);
+          trackContext.lineTo(position.x, position.y);
+          trackContext.stroke();
+          trackContext.globalAlpha = Math.max(fade, 0);
+          trackContext.beginPath();
+          trackContext.arc(position.x, position.y, particle.size * .7, 0, Math.PI * 2);
+          trackContext.fill();
+          trackContext.restore();
+        });
+        return active;
+      };
+
+      const drawF1Car = (car, angle, canvasWidth) => {
+        const scale = canvasWidth < 520 ? .9 : 1.05;
+        trackContext.save();
+        trackContext.translate(car.x, car.y);
+        trackContext.rotate(angle);
+        trackContext.scale(scale, scale);
+
+        trackContext.shadowColor = 'rgba(7,30,45,.24)';
+        trackContext.shadowBlur = 5;
+        trackContext.shadowOffsetY = 2;
+
+        trackContext.fillStyle = '#172934';
+        trackContext.fillRect(-10.5, -8.4, 6.5, 3.4);
+        trackContext.fillRect(4.5, -8.1, 6.2, 3.1);
+        trackContext.fillRect(-10.5, 5, 6.5, 3.4);
+        trackContext.fillRect(4.5, 5, 6.2, 3.1);
+
+        trackContext.fillStyle = '#223b47';
+        trackContext.fillRect(-15.5, -9.2, 3.2, 18.4);
+        trackContext.fillRect(-17, -9.8, 2, 3.6);
+        trackContext.fillRect(-17, 6.2, 2, 3.6);
+        trackContext.fillRect(12, -10, 2.7, 20);
+        trackContext.fillRect(10.2, -10.6, 4.5, 2.2);
+        trackContext.fillRect(10.2, 8.4, 4.5, 2.2);
+
+        trackContext.fillStyle = '#f07a58';
+        trackContext.beginPath();
+        trackContext.moveTo(13.2, 0);
+        trackContext.lineTo(7.2, -2.1);
+        trackContext.lineTo(4.3, -5.2);
+        trackContext.lineTo(-6.5, -5.5);
+        trackContext.lineTo(-11.8, -3.4);
+        trackContext.lineTo(-12.8, 0);
+        trackContext.lineTo(-11.8, 3.4);
+        trackContext.lineTo(-6.5, 5.5);
+        trackContext.lineTo(4.3, 5.2);
+        trackContext.lineTo(7.2, 2.1);
+        trackContext.closePath();
+        trackContext.fill();
+
+        trackContext.fillStyle = '#d85b3f';
+        trackContext.beginPath();
+        trackContext.moveTo(-8.5, -5.4);
+        trackContext.lineTo(-2.5, -7.1);
+        trackContext.lineTo(3.5, -5.1);
+        trackContext.lineTo(3.5, 5.1);
+        trackContext.lineTo(-2.5, 7.1);
+        trackContext.lineTo(-8.5, 5.4);
+        trackContext.closePath();
+        trackContext.fill();
+
+        trackContext.fillStyle = '#0d202c';
+        trackContext.beginPath();
+        trackContext.ellipse(-1.7, 0, 4.2, 2.8, 0, 0, Math.PI * 2);
+        trackContext.fill();
+        trackContext.strokeStyle = '#f7a080';
+        trackContext.lineWidth = 1.1;
+        trackContext.beginPath();
+        trackContext.arc(-1.1, 0, 3.2, -1.08, 1.08);
+        trackContext.stroke();
+
+        trackContext.fillStyle = '#ffffff';
+        trackContext.font = "700 6.5px 'Space Grotesk', sans-serif";
+        trackContext.textAlign = 'center';
+        trackContext.textBaseline = 'middle';
+        trackContext.fillText('24', 4.1, .2);
+
+        trackContext.shadowColor = 'transparent';
+        trackContext.fillStyle = '#f07a58';
+        trackContext.fillRect(-15.8, -8.7, 1.1, 17.4);
+        trackContext.fillRect(13.2, -9.3, 1, 18.6);
+        trackContext.restore();
+      };
+
+      const drawTrack = (now = 0) => {
+        const rect = trackCanvas.getBoundingClientRect();
+        trackContext.clearRect(0, 0, rect.width, rect.height);
+        if (!trackPoints.length) return false;
+        if (ghostTrackPoints.length) {
+          const direction = activeTrack === 'shanghai' ? 1 : -1;
+          trackContext.save();
+          trackContext.translate(direction * 9, -6);
+          trackContext.globalAlpha = .13;
+          strokeTrack(ghostTrackPoints, 9, 'rgba(249,252,254,.18)');
+          strokeTrack(ghostTrackPoints, 2.2, 'rgba(8,114,127,.28)');
+          strokeTrack(ghostTrackPoints, .8, 'rgba(249,252,254,.42)');
+          trackContext.restore();
+        }
+        strokeTrack(trackPoints, 16, 'rgba(8,114,127,.07)');
+        strokeTrack(trackPoints, 5, 'rgba(27,57,74,.86)');
+        strokeTrack(trackPoints, 1.6, 'rgba(249,252,254,.9)');
+
+        const finish = trackPoints[0];
+        const finishNext = trackPoints[5];
+        const finishAngle = Math.atan2(finishNext.y - finish.y, finishNext.x - finish.x) + Math.PI / 2;
+        trackContext.save();
+        trackContext.translate(finish.x, finish.y);
+        trackContext.rotate(finishAngle);
+        for (let row = 0; row < 2; row += 1) {
+          for (let column = 0; column < 6; column += 1) {
+            trackContext.fillStyle = (row + column) % 2 ? '#dce8ed' : '#26343c';
+            trackContext.fillRect(column * 4 - 12, row * 4 - 4, 4, 4);
+          }
+        }
+        trackContext.restore();
+
+        const car = positionAtProgress(trackProgress);
+        const angle = car.angle;
+        const glow = trackContext.createRadialGradient(car.x, car.y, 0, car.x, car.y, 22);
+        glow.addColorStop(0, 'rgba(227,107,77,.38)');
+        glow.addColorStop(1, 'rgba(227,107,77,0)');
+        trackContext.fillStyle = glow;
+        trackContext.beginPath();
+        trackContext.arc(car.x, car.y, 22, 0, Math.PI * 2);
+        trackContext.fill();
+        drawF1Car(car, angle, rect.width);
+        return drawCelebration(now);
+      };
+
+      const resizeTrack = () => {
+        const rect = trackCanvas.getBoundingClientRect();
+        const ratio = Math.min(window.devicePixelRatio || 1, 2);
+        trackCanvas.width = Math.max(Math.round(rect.width * ratio), 1);
+        trackCanvas.height = Math.max(Math.round(rect.height * ratio), 1);
+        trackContext.setTransform(ratio, 0, 0, ratio, 0, 0);
+        const inactiveTrack = activeTrack === 'shanghai' ? 'silverstone' : 'shanghai';
+        trackPoints = buildTrack(trackSources[activeTrack], rect.width, rect.height);
+        ghostTrackPoints = buildTrack(trackSources[inactiveTrack], rect.width, rect.height);
+        trackTimeline = buildSpeedTimeline(trackPoints);
+        drawTrack(performance.now());
+      };
+
+      const replayLap = () => {
+        window.cancelAnimationFrame(trackAnimationFrame);
+        celebrationParticles = [];
+        celebrationBursts = [];
+        celebrationStarted = 0;
+        trackProgress = 0;
+        if (reducedMotion) {
+          trackProgress = 1;
+          drawTrack();
+          return;
+        }
+        const start = performance.now();
+        const totalLaps = 2;
+        const lapDuration = 6800;
+        const duration = lapDuration * totalLaps;
+        const animate = now => {
+          const raw = Math.min((now - start) / duration, 1);
+          const racePosition = raw * totalLaps;
+          trackProgress = raw < 1 ? racePosition - Math.floor(racePosition) : 1;
+          drawTrack(now);
+          if (raw < 1) {
+            trackAnimationFrame = window.requestAnimationFrame(animate);
+          } else {
+            prepareCelebration(now);
+            const celebrate = celebrationNow => {
+              const active = drawTrack(celebrationNow);
+              if (active) trackAnimationFrame = window.requestAnimationFrame(celebrate);
+              else {
+                celebrationParticles = [];
+                celebrationBursts = [];
+                celebrationStarted = 0;
+              }
+            };
+            trackAnimationFrame = window.requestAnimationFrame(celebrate);
+          }
+        };
+        trackAnimationFrame = window.requestAnimationFrame(animate);
+      };
+
+      resizeTrack();
+      let trackResizeFrame = 0;
+      window.addEventListener('resize', () => {
+        window.cancelAnimationFrame(trackResizeFrame);
+        trackResizeFrame = window.requestAnimationFrame(resizeTrack);
+      }, { passive: true });
+      trackReplay.addEventListener('click', replayLap);
+      const updateTrackNameplate = () => {
+        const selectedIndex = trackOrder.indexOf(activeTrack);
+        trackNameEn.textContent = trackLabels[activeTrack].en;
+        trackNameZh.textContent = trackLabels[activeTrack].zh;
+        trackIndex.textContent = `${String(selectedIndex + 1).padStart(2, '0')} / ${String(trackOrder.length).padStart(2, '0')}`;
+      };
+      const setActiveTrack = trackKey => {
+        if (!trackSources[trackKey] || trackKey === activeTrack) return;
+        window.cancelAnimationFrame(trackAnimationFrame);
+        celebrationParticles = [];
+        celebrationBursts = [];
+        celebrationStarted = 0;
+        activeTrack = trackKey;
+        trackProgress = 0;
+        updateTrackNameplate();
+        resizeTrack();
+        replayLap();
+      };
+      trackCycleButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const currentIndex = trackOrder.indexOf(activeTrack);
+          const direction = Number(button.dataset.trackCycle);
+          const nextIndex = (currentIndex + direction + trackOrder.length) % trackOrder.length;
+          setActiveTrack(trackOrder[nextIndex]);
+        });
+      });
+      const trackObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !trackPlayed) {
+            trackPlayed = true;
+            replayLap();
+          }
+        });
+      }, { threshold: .35 });
+      trackObserver.observe(trackSection);
+    }
+
     if (finePointer && !reducedMotion) {
       const dot = document.querySelector('.cursor-dot');
       const ring = document.querySelector('.cursor-ring');
