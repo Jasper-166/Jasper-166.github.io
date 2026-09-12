@@ -202,13 +202,14 @@
     .button-link.secondary { background: transparent; border-color: rgba(255,255,255,.28); color: #f6fbff; }
     .button-link:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(20,202,199,0.16); }
     .hero-contacts { display: flex; flex-wrap: wrap; gap: 1rem; }
-    .hero-contacts a {
+    .hero-contacts a, .hero-contacts button {
       display: inline-flex; align-items: center; gap: 6px;
       font-size: 12px; letter-spacing: 0.08em; color: #a9c1cd;
       text-decoration: none; border: 1px solid rgba(255,255,255,0.15);
       padding: 7px 14px; border-radius: 999px; transition: all 0.2s;
+      background: transparent; font-family: inherit; font-weight: inherit; line-height: inherit; cursor: pointer;
     }
-    .hero-contacts a:hover { color: white; border-color: rgba(255,255,255,.55); }
+    .hero-contacts a:hover, .hero-contacts button:hover { color: white; border-color: rgba(255,255,255,.55); }
     .hero-focus {
       align-self: center; position: relative; overflow: visible; padding: 0;
     }
@@ -512,6 +513,91 @@
       opacity: 0; filter: blur(2px); transform: translate3d(-9%,0,-80px) rotateY(64deg) scale(.86); transition: none;
     }
 
+    /* CONTACT MODAL */
+    body.contact-modal-open { overflow: hidden; }
+    .contact-modal[hidden] { display: none; }
+    .contact-modal {
+      position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center;
+      padding: 1.5rem; opacity: 0; transition: opacity .16s ease;
+    }
+    .contact-modal.open { opacity: 1; }
+    .contact-modal-backdrop {
+      position: absolute; inset: 0; background: rgba(2,11,18,.74);
+      backdrop-filter: blur(5px);
+    }
+    .contact-dialog {
+      position: relative; z-index: 1; display: block; width: min(710px, 100%); max-height: min(780px, calc(100vh - 3rem));
+      overflow-y: auto; padding: 2.85rem 3rem 3rem; border: 1px solid rgba(184,207,218,.22); border-radius: 18px;
+      color: #eaf4f8;
+      background:
+        radial-gradient(circle at 86% 4%, rgba(98,215,213,.075), transparent 34%),
+        linear-gradient(145deg, rgba(7,30,45,.99), rgba(8,39,57,.99));
+      box-shadow: 0 38px 120px rgba(0,0,0,.5), 0 12px 38px rgba(1,15,24,.3), inset 0 1px 0 rgba(255,255,255,.055);
+      transform: translateY(6px); transition: transform .16s ease;
+    }
+    .contact-dialog::before {
+      content: ''; position: absolute; top: 0; left: 3rem; right: 3rem; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(98,215,213,.62), transparent);
+    }
+    .contact-modal.open .contact-dialog { transform: translateY(0); }
+    .contact-close {
+      position: absolute; top: 1.15rem; right: 1.15rem; display: grid; place-items: center;
+      width: 36px; height: 36px; padding: 0; border: 1px solid rgba(184,207,218,.2); border-radius: 50%;
+      color: #a9c1cd; background: rgba(255,255,255,.035); font: 300 22px/1 'Space Grotesk', sans-serif;
+      cursor: pointer; transition: color .2s ease, border-color .2s ease, background .2s ease;
+    }
+    .contact-close:hover { color: white; border-color: rgba(255,255,255,.5); background: rgba(255,255,255,.08); }
+    .contact-heading {
+      padding-right: 3rem; color: #f6fbff; font-size: 31px; font-weight: 500;
+      letter-spacing: -.025em; line-height: 1.2;
+    }
+    body.zh .contact-heading { font-family: 'Noto Serif SC', serif; letter-spacing: .02em; }
+    .contact-intro { max-width: 570px; margin: .8rem 0 2.05rem; color: #a9c1cd; font-size: 14px; line-height: 1.75; }
+    .contact-form { display: grid; gap: 1.3rem; }
+    .contact-field-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.15rem; }
+    .contact-field { display: grid; gap: .48rem; }
+    .contact-field label { color: #dceaf0; font-size: 12px; font-weight: 400; letter-spacing: .06em; }
+    .contact-field input, .contact-field textarea {
+      width: 100%; border: 1px solid rgba(184,207,218,.22); border-radius: 10px;
+      color: #f6fbff; background: rgba(255,255,255,.045); padding: .82rem .95rem;
+      font: 300 14px/1.55 'Space Grotesk','Noto Sans SC',sans-serif;
+      outline: none; transition: border-color .2s ease, background .2s ease, box-shadow .2s ease;
+    }
+    .contact-field textarea { min-height: 180px; resize: vertical; }
+    .contact-field input:hover, .contact-field textarea:hover { border-color: rgba(184,207,218,.4); }
+    .contact-field input:focus, .contact-field textarea:focus {
+      border-color: #62d7d5; background: rgba(255,255,255,.065);
+      box-shadow: 0 0 0 3px rgba(98,215,213,.12);
+    }
+    .contact-field input::placeholder, .contact-field textarea::placeholder { color: #6f8997; }
+    .contact-honeypot {
+      position: absolute !important; left: -10000px !important; width: 1px !important; height: 1px !important;
+      overflow: hidden !important; opacity: 0 !important; pointer-events: none !important;
+    }
+    .contact-actions { display: flex; align-items: center; justify-content: space-between; gap: 1.25rem; margin-top: .35rem; }
+    .contact-submit, .contact-success-close {
+      display: inline-flex; align-items: center; justify-content: center; min-height: 48px;
+      padding: .8rem 1.65rem; border: 1px solid #62d7d5; border-radius: 999px;
+      color: var(--night); background: #62d7d5; font: 500 12px/1 'Space Grotesk','Noto Sans SC',sans-serif;
+      letter-spacing: .06em; cursor: pointer; transition: transform .2s ease, box-shadow .2s ease, opacity .2s ease;
+    }
+    .contact-submit:hover, .contact-success-close:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(20,202,199,.16); }
+    .contact-submit:disabled { cursor: wait; opacity: .62; transform: none; box-shadow: none; }
+    .contact-submit[data-state="idle"] .contact-submit-sending,
+    .contact-submit[data-state="sending"] .contact-submit-idle { display: none; }
+    .contact-status { flex: 1; color: #f0a58f; font-size: 12px; line-height: 1.5; }
+    .contact-success {
+      min-height: 390px; padding: 1.5rem .25rem; display: flex; flex-direction: column;
+      align-items: flex-start; justify-content: center; text-align: left;
+    }
+    .contact-success[hidden] { display: none; }
+    .contact-success-mark {
+      display: grid; place-items: center; width: 48px; height: 48px; margin-bottom: 1.25rem;
+      border: 1px solid rgba(98,215,213,.38); border-radius: 50%; color: #62d7d5;
+      background: rgba(98,215,213,.08); font-size: 21px;
+    }
+    .contact-success p { margin: .8rem 0 1.65rem; color: #a9c1cd; font-size: 14px; line-height: 1.75; }
+
     /* FOOTER */
     footer {
       padding: 3rem; display: flex; justify-content: space-between;
@@ -571,6 +657,7 @@
     @media (prefers-reduced-motion: reduce) {
       .cursor-dot, .cursor-ring { display: none !important; }
       .mission-core::after { animation: none; opacity: .45; }
+      .contact-modal, .contact-dialog { transition: none; }
       .reveal,
       .reveal.visible {
         opacity: 1;
@@ -578,6 +665,10 @@
         filter: none;
         transition: none;
       }
+    }
+
+    @media (max-width: 760px) {
+      .contact-field-row { grid-template-columns: 1fr; gap: 1rem; }
     }
 
     @media (max-width: 700px) {
@@ -608,6 +699,17 @@
       .track-cycle-button { width: 38px; height: 50px; border-radius: 16px; }
       .track-cycle-prev { left: -.55rem; }
       .track-cycle-next { right: -.55rem; }
+      .contact-modal { padding: 1rem; }
+      .contact-dialog { max-height: calc(100vh - 2rem); padding: 1.55rem 1.25rem 1.35rem; border-radius: 14px; }
+      .contact-dialog::before { left: 1.25rem; right: 1.25rem; }
+      .contact-close { top: .72rem; right: .72rem; width: 34px; height: 34px; }
+      .contact-heading { font-size: 22px; }
+      .contact-intro { margin: .55rem 0 1.25rem; font-size: 13px; }
+      .contact-form { gap: 1rem; }
+      .contact-field textarea { min-height: 138px; }
+      .contact-actions { align-items: flex-start; flex-direction: column; }
+      .contact-submit { width: 100%; }
+      .contact-success { min-height: 300px; padding: 1rem 0 .35rem; }
       footer { padding: 2rem 1.5rem; flex-direction: column; gap: 8px; text-align: center; }
     }
     @media (min-width: 701px) and (max-width: 980px) {
@@ -687,7 +789,7 @@
         <div class="hero-contacts">
           <a href="mailto:peiji166@qq.com">✉ peiji166@qq.com</a>
           <a href="tel:+447350129143">✆ +44 7350 129143</a>
-          <a href="https://t.me/SmallASD" target="_blank" rel="noreferrer">✈ Telegram @SmallASD</a>
+          <button class="contact-trigger" id="contactOpen" type="button" aria-haspopup="dialog" aria-controls="contactModal" aria-expanded="false"><span data-lang="en">Leave a Message</span><span data-lang="zh">给我留言</span></button>
         </div>
       </div>
       <aside class="hero-focus" aria-label="Research approach">
@@ -1082,10 +1184,73 @@
     <span>Birmingham, UK · peiji166@qq.com</span>
   </footer>
 
+  <div class="contact-modal" id="contactModal" hidden>
+    <div class="contact-modal-backdrop" data-contact-close></div>
+    <section class="contact-dialog" role="dialog" aria-modal="true" aria-labelledby="contactTitle" aria-describedby="contactIntro">
+      <button class="contact-close" id="contactClose" type="button" data-contact-close aria-label="Close contact form / 关闭留言窗口"><span aria-hidden="true">×</span></button>
+
+      <div id="contactFormView">
+        <h2 class="contact-heading" id="contactTitle"><span data-lang="en">Leave a Message</span><span data-lang="zh">给我留言</span></h2>
+        <p class="contact-intro" id="contactIntro"><span data-lang="en">Have a question, opportunity, or just want to connect? Feel free to leave me a message.</span><span data-lang="zh">如果你有问题、合作机会，或只是想认识一下，欢迎给我留言。</span></p>
+
+        <form class="contact-form" id="contactForm" action="https://formspree.io/f/mljekkzv" method="POST">
+          <input type="hidden" name="subject" value="New portfolio message from {{ name }}">
+          <div class="contact-honeypot" aria-hidden="true">
+            <label for="contactWebsite">Website</label>
+            <input id="contactWebsite" type="text" name="_gotcha" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="contact-field-row">
+            <div class="contact-field">
+              <label for="contactName"><span data-lang="en">Name</span><span data-lang="zh">姓名</span></label>
+              <input id="contactName" name="name" type="text" autocomplete="name" minlength="2" maxlength="80" required>
+            </div>
+
+            <div class="contact-field">
+              <label for="contactEmail"><span data-lang="en">Email</span><span data-lang="zh">邮箱</span></label>
+              <input id="contactEmail" name="email" type="email" autocomplete="email" maxlength="254" required>
+            </div>
+          </div>
+
+          <div class="contact-field">
+            <label for="contactMessage"><span data-lang="en">Message</span><span data-lang="zh">留言内容</span></label>
+            <textarea id="contactMessage" name="message" minlength="10" maxlength="2000" required></textarea>
+          </div>
+
+          <div class="contact-actions">
+            <p class="contact-status" id="contactStatus" role="status" aria-live="polite" hidden><span data-lang="en">Something went wrong. Please try again.</span><span data-lang="zh">发送失败，请稍后重试。</span></p>
+            <button class="contact-submit" id="contactSubmit" type="submit" data-state="idle">
+              <span class="contact-submit-idle"><span data-lang="en">Send Message</span><span data-lang="zh">发送留言</span></span>
+              <span class="contact-submit-sending"><span data-lang="en">Sending...</span><span data-lang="zh">发送中...</span></span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div class="contact-success" id="contactSuccess" role="status" tabindex="-1" hidden>
+        <div class="contact-success-mark" aria-hidden="true">✓</div>
+        <h2 class="contact-heading"><span data-lang="en">Message sent.</span><span data-lang="zh">留言已发送。</span></h2>
+        <p><span data-lang="en">Thanks for reaching out. I'll get back to you by email.</span><span data-lang="zh">感谢你的留言，我会通过邮箱回复你。</span></p>
+        <button class="contact-success-close" type="button" data-contact-close><span data-lang="en">Close</span><span data-lang="zh">关闭</span></button>
+      </div>
+    </section>
+  </div>
+
   <script>
     const body = document.body;
     const mainNav = document.getElementById('mainNav');
     const hamburger = document.getElementById('hamburger');
+    const contactOpen = document.getElementById('contactOpen');
+    const contactModal = document.getElementById('contactModal');
+    const contactClose = document.getElementById('contactClose');
+    const contactForm = document.getElementById('contactForm');
+    const contactFormView = document.getElementById('contactFormView');
+    const contactSuccess = document.getElementById('contactSuccess');
+    const contactSubmit = document.getElementById('contactSubmit');
+    const contactStatus = document.getElementById('contactStatus');
+    let contactLastFocus = null;
+    let contactCloseTimer = 0;
+    let contactSubmissionController = null;
 
     function setLang(lang) {
       body.classList.remove('en', 'zh');
@@ -1113,6 +1278,106 @@
 
     document.querySelectorAll('[data-set-lang]').forEach(button => {
       button.addEventListener('click', () => setLang(button.dataset.setLang));
+    });
+
+    const resetContactModal = () => {
+      contactForm.reset();
+      contactFormView.hidden = false;
+      contactSuccess.hidden = true;
+      contactStatus.hidden = true;
+      contactSubmit.disabled = false;
+      contactSubmit.dataset.state = 'idle';
+      contactForm.setAttribute('aria-busy', 'false');
+    };
+
+    const openContactModal = () => {
+      window.clearTimeout(contactCloseTimer);
+      contactLastFocus = document.activeElement;
+      resetContactModal();
+      contactModal.hidden = false;
+      contactOpen.setAttribute('aria-expanded', 'true');
+      body.classList.add('contact-modal-open');
+      window.requestAnimationFrame(() => {
+        contactModal.classList.add('open');
+        document.getElementById('contactName').focus();
+      });
+    };
+
+    const closeContactModal = () => {
+      if (contactModal.hidden) return;
+      if (contactSubmissionController) contactSubmissionController.abort();
+      contactModal.classList.remove('open');
+      contactOpen.setAttribute('aria-expanded', 'false');
+      body.classList.remove('contact-modal-open');
+      contactCloseTimer = window.setTimeout(() => {
+        contactModal.hidden = true;
+        resetContactModal();
+        if (contactLastFocus && typeof contactLastFocus.focus === 'function') contactLastFocus.focus();
+      }, 170);
+    };
+
+    contactOpen.addEventListener('click', openContactModal);
+    document.querySelectorAll('[data-contact-close]').forEach(element => {
+      element.addEventListener('click', closeContactModal);
+    });
+
+    document.addEventListener('keydown', event => {
+      if (contactModal.hidden) return;
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        closeContactModal();
+        return;
+      }
+      if (event.key !== 'Tab') return;
+      const focusable = Array.from(contactModal.querySelectorAll('button:not([disabled]), input:not([disabled]):not([tabindex="-1"]), textarea:not([disabled])'))
+        .filter(element => element.getClientRects().length > 0);
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
+
+    contactForm.addEventListener('submit', async event => {
+      event.preventDefault();
+      if (!contactForm.reportValidity()) return;
+
+      contactStatus.hidden = true;
+      contactSubmit.disabled = true;
+      contactSubmit.dataset.state = 'sending';
+      contactForm.setAttribute('aria-busy', 'true');
+      const endpoint = contactForm.getAttribute('action').trim();
+
+      try {
+        if (!endpoint || endpoint.startsWith('YOUR_')) throw new Error('Form endpoint is not configured');
+        contactSubmissionController = new AbortController();
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          body: new FormData(contactForm),
+          headers: { Accept: 'application/json' },
+          signal: contactSubmissionController.signal
+        });
+        if (!response.ok) throw new Error('Form submission failed');
+
+        contactForm.reset();
+        contactForm.setAttribute('aria-busy', 'false');
+        contactFormView.hidden = true;
+        contactSuccess.hidden = false;
+        contactSuccess.focus();
+      } catch (error) {
+        if (error.name === 'AbortError') return;
+        contactStatus.hidden = false;
+        contactSubmit.disabled = false;
+        contactSubmit.dataset.state = 'idle';
+        contactForm.setAttribute('aria-busy', 'false');
+      } finally {
+        contactSubmissionController = null;
+      }
     });
 
     if (hamburger) {
